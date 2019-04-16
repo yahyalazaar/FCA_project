@@ -3,7 +3,7 @@
  * Class that operate on table 'historiquerfi'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-14 22:17
+ * @date: 2019-04-16 19:38
  */
 class HistoriquerfiMySqlDAO implements HistoriquerfiDAO{
 
@@ -57,9 +57,10 @@ class HistoriquerfiMySqlDAO implements HistoriquerfiDAO{
  	 * @param HistoriquerfiMySql historiquerfi
  	 */
 	public function insert($historiquerfi){
-		$sql = 'INSERT INTO historiquerfi () VALUES ()';
+		$sql = 'INSERT INTO historiquerfi (id_rfi) VALUES (?)';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($historiquerfi->idRfi);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$historiquerfi->idHrfi = $id;
@@ -72,9 +73,10 @@ class HistoriquerfiMySqlDAO implements HistoriquerfiDAO{
  	 * @param HistoriquerfiMySql historiquerfi
  	 */
 	public function update($historiquerfi){
-		$sql = 'UPDATE historiquerfi SET  WHERE id_hrfi = ?';
+		$sql = 'UPDATE historiquerfi SET id_rfi = ? WHERE id_hrfi = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($historiquerfi->idRfi);
 
 		$sqlQuery->setNumber($historiquerfi->idHrfi);
 		return $this->executeUpdate($sqlQuery);
@@ -89,6 +91,20 @@ class HistoriquerfiMySqlDAO implements HistoriquerfiDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function queryByIdRfi($value){
+		$sql = 'SELECT * FROM historiquerfi WHERE id_rfi = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+
+	public function deleteByIdRfi($value){
+		$sql = 'DELETE FROM historiquerfi WHERE id_rfi = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
 
 
 	
@@ -101,6 +117,7 @@ class HistoriquerfiMySqlDAO implements HistoriquerfiDAO{
 		$historiquerfi = new Historiquerfi();
 		
 		$historiquerfi->idHrfi = $row['id_hrfi'];
+		$historiquerfi->idRfi = $row['id_rfi'];
 
 		return $historiquerfi;
 	}

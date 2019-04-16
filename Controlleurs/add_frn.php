@@ -5,24 +5,24 @@ include_once '../include_dao.php';
 extract($_POST);
 
 if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty($mot_de_passe) || !empty($idfa)) {
-    $add = new AdminMySqlDAO();
+    $add = new FournisseurMySqlDAO();
+    if ($add->queryByEmailFournisseur($email) == NULL) {
+        $Fournisseur = new Fournisseur();
+        $Fournisseur->nomFrn = $nom;
+        $Fournisseur->idFa = $idfa;
+        $Fournisseur->prenomFrn = $prenom;
+        $Fournisseur->telFrn = $telephone;
+        $Fournisseur->emailFrn = $email;
+        $Fournisseur->mdpFrn = $mot_de_passe;
 
-    if ($add->queryByEmailAdmin($email) == NULL) {
-        $admin = new Admin();
-        $admin->nomAdmin = $nom;
-        $admin->prenomAdmin = $prenom;
-        $admin->telAdmin = $telephone;
-        $admin->emailAdmin = $email;
-        $admin->mdpAdmin = $mot_de_passe;
 
+        $last = $add->insert($Fournisseur);
 
-        $last = $add->insert($admin);
-
-        $fk = new AdminAdminMySqlDAO();
-        $aa = new AdminAdmin();
-        $aa->idAdmin = $last;
-        $aa->admIdAdmin = $_SESSION['idlogin'];
-        $aa->dateAdminAdmin = date("Y-m-d H:m:s");
+        $fk = new AchtFrnMySqlDAO();
+        $aa = new AchtFrn();
+        $aa->idFrn = $last;
+        $aa->idAcht = $_SESSION['idlogin'];
+        $aa->dateAchtFrn = date("Y-m-d H:m:s");
         $aa->type = "add";
         $fk->insert($aa);
         $msg = '<div class="alert alert-success alert-dismissible fade in" role="alert">

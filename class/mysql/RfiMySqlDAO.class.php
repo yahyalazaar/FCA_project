@@ -3,7 +3,7 @@
  * Class that operate on table 'rfi'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-14 22:17
+ * @date: 2019-04-16 19:38
  */
 class RfiMySqlDAO implements RfiDAO{
 
@@ -57,9 +57,10 @@ class RfiMySqlDAO implements RfiDAO{
  	 * @param RfiMySql rfi
  	 */
 	public function insert($rfi){
-		$sql = 'INSERT INTO rfi () VALUES ()';
+		$sql = 'INSERT INTO rfi (id_frn) VALUES (?)';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($rfi->idFrn);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$rfi->idRfi = $id;
@@ -72,9 +73,10 @@ class RfiMySqlDAO implements RfiDAO{
  	 * @param RfiMySql rfi
  	 */
 	public function update($rfi){
-		$sql = 'UPDATE rfi SET  WHERE id_rfi = ?';
+		$sql = 'UPDATE rfi SET id_frn = ? WHERE id_rfi = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($rfi->idFrn);
 
 		$sqlQuery->setNumber($rfi->idRfi);
 		return $this->executeUpdate($sqlQuery);
@@ -89,6 +91,20 @@ class RfiMySqlDAO implements RfiDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function queryByIdFrn($value){
+		$sql = 'SELECT * FROM rfi WHERE id_frn = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+
+	public function deleteByIdFrn($value){
+		$sql = 'DELETE FROM rfi WHERE id_frn = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
 
 
 	
@@ -101,6 +117,7 @@ class RfiMySqlDAO implements RfiDAO{
 		$rfi = new Rfi();
 		
 		$rfi->idRfi = $row['id_rfi'];
+		$rfi->idFrn = $row['id_frn'];
 
 		return $rfi;
 	}

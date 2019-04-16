@@ -3,7 +3,7 @@
  * Class that operate on table 'reclamation'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-14 22:17
+ * @date: 2019-04-16 19:38
  */
 class ReclamationMySqlDAO implements ReclamationDAO{
 
@@ -57,11 +57,11 @@ class ReclamationMySqlDAO implements ReclamationDAO{
  	 * @param ReclamationMySql reclamation
  	 */
 	public function insert($reclamation){
-		$sql = 'INSERT INTO reclamation (id_admin, id_acht) VALUES (?, ?)';
+		$sql = 'INSERT INTO reclamation (id_acht, id_frn) VALUES (?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($reclamation->idAdmin);
 		$sqlQuery->setNumber($reclamation->idAcht);
+		$sqlQuery->setNumber($reclamation->idFrn);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$reclamation->idRec = $id;
@@ -74,11 +74,11 @@ class ReclamationMySqlDAO implements ReclamationDAO{
  	 * @param ReclamationMySql reclamation
  	 */
 	public function update($reclamation){
-		$sql = 'UPDATE reclamation SET id_admin = ?, id_acht = ? WHERE id_rec = ?';
+		$sql = 'UPDATE reclamation SET id_acht = ?, id_frn = ? WHERE id_rec = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($reclamation->idAdmin);
 		$sqlQuery->setNumber($reclamation->idAcht);
+		$sqlQuery->setNumber($reclamation->idFrn);
 
 		$sqlQuery->setNumber($reclamation->idRec);
 		return $this->executeUpdate($sqlQuery);
@@ -93,13 +93,6 @@ class ReclamationMySqlDAO implements ReclamationDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function queryByIdAdmin($value){
-		$sql = 'SELECT * FROM reclamation WHERE id_admin = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
-		return $this->getList($sqlQuery);
-	}
-
 	public function queryByIdAcht($value){
 		$sql = 'SELECT * FROM reclamation WHERE id_acht = ?';
 		$sqlQuery = new SqlQuery($sql);
@@ -107,16 +100,23 @@ class ReclamationMySqlDAO implements ReclamationDAO{
 		return $this->getList($sqlQuery);
 	}
 
+	public function queryByIdFrn($value){
+		$sql = 'SELECT * FROM reclamation WHERE id_frn = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
 
-	public function deleteByIdAdmin($value){
-		$sql = 'DELETE FROM reclamation WHERE id_admin = ?';
+
+	public function deleteByIdAcht($value){
+		$sql = 'DELETE FROM reclamation WHERE id_acht = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByIdAcht($value){
-		$sql = 'DELETE FROM reclamation WHERE id_acht = ?';
+	public function deleteByIdFrn($value){
+		$sql = 'DELETE FROM reclamation WHERE id_frn = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
@@ -133,8 +133,8 @@ class ReclamationMySqlDAO implements ReclamationDAO{
 		$reclamation = new Reclamation();
 		
 		$reclamation->idRec = $row['id_rec'];
-		$reclamation->idAdmin = $row['id_admin'];
 		$reclamation->idAcht = $row['id_acht'];
+		$reclamation->idFrn = $row['id_frn'];
 
 		return $reclamation;
 	}

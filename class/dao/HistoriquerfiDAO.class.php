@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-14 22:17
+ * @date: 2019-04-16 19:38
  */
 interface HistoriquerfiDAO{
 
@@ -51,6 +51,10 @@ interface HistoriquerfiDAO{
 	 */
 	public function clean();
 
+	public function queryByIdRfi($value);
+
+
+	public function deleteByIdRfi($value);
 
 
 }

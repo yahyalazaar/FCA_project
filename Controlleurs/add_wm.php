@@ -4,27 +4,18 @@ session_start();
 include_once '../include_dao.php';
 extract($_POST);
 
-if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty($mot_de_passe) || !empty($idfa)) {
-    $add = new AdminMySqlDAO();
+if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty($mot_de_passe)) {
 
-    if ($add->queryByEmailAdmin($email) == NULL) {
-        $admin = new Admin();
-        $admin->nomAdmin = $nom;
-        $admin->prenomAdmin = $prenom;
-        $admin->telAdmin = $telephone;
-        $admin->emailAdmin = $email;
-        $admin->mdpAdmin = $mot_de_passe;
+    $add = new WebmasterMySqlDAO();
+    if ($add->queryByEmailWm($email) == NULL) {
+        $wm = new Webmaster();
+        $wm->nomWm = $nom;
+        $wm->prenomWm = $prenom;
+        $wm->telWm = $telephone;
+        $wm->emailWm = $email;
+        $wm->mdpWm = $mot_de_passe;
+        $last = $add->insert($wm);
 
-
-        $last = $add->insert($admin);
-
-        $fk = new AdminAdminMySqlDAO();
-        $aa = new AdminAdmin();
-        $aa->idAdmin = $last;
-        $aa->admIdAdmin = $_SESSION['idlogin'];
-        $aa->dateAdminAdmin = date("Y-m-d H:m:s");
-        $aa->type = "add";
-        $fk->insert($aa);
         $msg = '<div class="alert alert-success alert-dismissible fade in" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
   </button>

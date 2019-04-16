@@ -191,11 +191,14 @@
                                                 foreach ($admin as $value) {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $value->idAdmin ?></td>
-                                                        <td><?php echo $value->nomAdmin ?></td>
-                                                        <td><?php echo $value->prenomAdmin ?></td>
-                                                        <td><?php echo $value->emailAdmin ?></td>
-                                                        <td><button>action</button></td>
+                                                        <td><?php echo $value->idAdmin; ?></td>
+                                                        <td><?php echo $value->nomAdmin; ?></td>
+                                                        <td><?php echo $value->prenomAdmin; ?></td>
+                                                        <td><?php echo $value->emailAdmin; ?></td>
+                                                        <td style="width: 17%">
+                                                            <a class="btn btn-link" href="#"><i class="fa fa-eye"></i> Voir</a>
+                                                            <a class="btn btn-link" href="#"><i class="fa fa-edit"></i> Voir</a>
+                                                        </td>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>

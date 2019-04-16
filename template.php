@@ -36,14 +36,7 @@
                     <li><a href="#"><i class="fa fa-warning"></i>Réclamations</a></li>
                     <li><a href="#"><i class="fa fa-file-text"></i>Évaluation en amont</a></li>
                     <li><a href="#"><i class="fa fa-file-text"></i>Évaluation en aval</a></li>
-                    
-                    <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="form.html">General Form</a></li>
-                            <li><a href="form_advanced.html">Advanced Components</a></li>
-
-                        </ul>
-                    </li>
+                   
                 </ul>
             </div>
 
