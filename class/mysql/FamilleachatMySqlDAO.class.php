@@ -3,7 +3,7 @@
  * Class that operate on table 'familleachat'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 class FamilleachatMySqlDAO implements FamilleachatDAO{
 
@@ -57,16 +57,12 @@ class FamilleachatMySqlDAO implements FamilleachatDAO{
  	 * @param FamilleachatMySql familleachat
  	 */
 	public function insert($familleachat){
-		$sql = 'INSERT INTO familleachat (nom_fa, code_fa, type_fa, segement1_fa, segement2_fa, segement3_fa, segement4_fe, service_fa, classe_fa, levier_fa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO familleachat (nom_fa, code_fa, type_fa, service_fa, classe_fa, levier_fa) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($familleachat->nomFa);
 		$sqlQuery->set($familleachat->codeFa);
 		$sqlQuery->set($familleachat->typeFa);
-		$sqlQuery->set($familleachat->segement1Fa);
-		$sqlQuery->set($familleachat->segement2Fa);
-		$sqlQuery->set($familleachat->segement3Fa);
-		$sqlQuery->set($familleachat->segement4Fe);
 		$sqlQuery->set($familleachat->serviceFa);
 		$sqlQuery->set($familleachat->classeFa);
 		$sqlQuery->set($familleachat->levierFa);
@@ -82,16 +78,12 @@ class FamilleachatMySqlDAO implements FamilleachatDAO{
  	 * @param FamilleachatMySql familleachat
  	 */
 	public function update($familleachat){
-		$sql = 'UPDATE familleachat SET nom_fa = ?, code_fa = ?, type_fa = ?, segement1_fa = ?, segement2_fa = ?, segement3_fa = ?, segement4_fe = ?, service_fa = ?, classe_fa = ?, levier_fa = ? WHERE id_fa = ?';
+		$sql = 'UPDATE familleachat SET nom_fa = ?, code_fa = ?, type_fa = ?, service_fa = ?, classe_fa = ?, levier_fa = ? WHERE id_fa = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($familleachat->nomFa);
 		$sqlQuery->set($familleachat->codeFa);
 		$sqlQuery->set($familleachat->typeFa);
-		$sqlQuery->set($familleachat->segement1Fa);
-		$sqlQuery->set($familleachat->segement2Fa);
-		$sqlQuery->set($familleachat->segement3Fa);
-		$sqlQuery->set($familleachat->segement4Fe);
 		$sqlQuery->set($familleachat->serviceFa);
 		$sqlQuery->set($familleachat->classeFa);
 		$sqlQuery->set($familleachat->levierFa);
@@ -125,34 +117,6 @@ class FamilleachatMySqlDAO implements FamilleachatDAO{
 
 	public function queryByTypeFa($value){
 		$sql = 'SELECT * FROM familleachat WHERE type_fa = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->getList($sqlQuery);
-	}
-
-	public function queryBySegement1Fa($value){
-		$sql = 'SELECT * FROM familleachat WHERE segement1_fa = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->getList($sqlQuery);
-	}
-
-	public function queryBySegement2Fa($value){
-		$sql = 'SELECT * FROM familleachat WHERE segement2_fa = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->getList($sqlQuery);
-	}
-
-	public function queryBySegement3Fa($value){
-		$sql = 'SELECT * FROM familleachat WHERE segement3_fa = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->getList($sqlQuery);
-	}
-
-	public function queryBySegement4Fe($value){
-		$sql = 'SELECT * FROM familleachat WHERE segement4_fe = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
@@ -201,34 +165,6 @@ class FamilleachatMySqlDAO implements FamilleachatDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteBySegement1Fa($value){
-		$sql = 'DELETE FROM familleachat WHERE segement1_fa = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->executeUpdate($sqlQuery);
-	}
-
-	public function deleteBySegement2Fa($value){
-		$sql = 'DELETE FROM familleachat WHERE segement2_fa = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->executeUpdate($sqlQuery);
-	}
-
-	public function deleteBySegement3Fa($value){
-		$sql = 'DELETE FROM familleachat WHERE segement3_fa = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->executeUpdate($sqlQuery);
-	}
-
-	public function deleteBySegement4Fe($value){
-		$sql = 'DELETE FROM familleachat WHERE segement4_fe = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->executeUpdate($sqlQuery);
-	}
-
 	public function deleteByServiceFa($value){
 		$sql = 'DELETE FROM familleachat WHERE service_fa = ?';
 		$sqlQuery = new SqlQuery($sql);
@@ -264,10 +200,6 @@ class FamilleachatMySqlDAO implements FamilleachatDAO{
 		$familleachat->nomFa = $row['nom_fa'];
 		$familleachat->codeFa = $row['code_fa'];
 		$familleachat->typeFa = $row['type_fa'];
-		$familleachat->segement1Fa = $row['segement1_fa'];
-		$familleachat->segement2Fa = $row['segement2_fa'];
-		$familleachat->segement3Fa = $row['segement3_fa'];
-		$familleachat->segement4Fe = $row['segement4_fe'];
 		$familleachat->serviceFa = $row['service_fa'];
 		$familleachat->classeFa = $row['classe_fa'];
 		$familleachat->levierFa = $row['levier_fa'];

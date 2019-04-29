@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 interface FournisseurDAO{
 
@@ -51,8 +51,6 @@ interface FournisseurDAO{
 	 */
 	public function clean();
 
-	public function queryByIdFa($value);
-
 	public function queryByNomFrn($value);
 
 	public function queryByPrenomFrn($value);
@@ -63,8 +61,8 @@ interface FournisseurDAO{
 
 	public function queryByTelFrn($value);
 
+	public function queryByEtatFrn($value);
 
-	public function deleteByIdFa($value);
 
 	public function deleteByNomFrn($value);
 
@@ -75,6 +73,8 @@ interface FournisseurDAO{
 	public function deleteByMdpFrn($value);
 
 	public function deleteByTelFrn($value);
+
+	public function deleteByEtatFrn($value);
 
 
 }

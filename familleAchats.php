@@ -61,7 +61,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>Nouveau Famille</h2>
+                                        <h2>Nouvelle Famille</h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -110,50 +110,6 @@
                                             </div>
                                             <div class="item form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="segement1">Segement 1<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="segement1"
-                                                           class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="3" data-validate-words="1"
-                                                           name="segement1" required="required" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="segement2">Segement 2<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="segement2"
-                                                           class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="3" data-validate-words="1"
-                                                           name="segement2" required="required" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="segement3">Segement 3<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="segement3"
-                                                           class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="3" data-validate-words="1"
-                                                           name="segement3" required="required" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="segement4">Segement 4<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="segement4"
-                                                           class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="3" data-validate-words="1"
-                                                           name="segement4" required="required" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                                        for="services_concernes">Services concernés<span
                                                         class="required">*</span>
                                                 </label>
@@ -174,7 +130,6 @@
                                                         <option value="Classe A">Classe A</option>
                                                         <option value="Classe B">Classe B</option>
                                                         <option value="Classe C">Classe C</option>
-                                                        <option value="Classe D">Classe D</option>
                                                     </select>
                                                 </div>
                                             </div>

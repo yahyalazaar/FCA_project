@@ -3,7 +3,7 @@
  * Class that operate on table 'acheteur'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 class AcheteurMySqlDAO implements AcheteurDAO{
 
@@ -57,7 +57,7 @@ class AcheteurMySqlDAO implements AcheteurDAO{
  	 * @param AcheteurMySql acheteur
  	 */
 	public function insert($acheteur){
-		$sql = 'INSERT INTO acheteur (nom_acht, prenom_acht, email_acht, mdp_acht, tel_acht) VALUES (?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO acheteur (nom_acht, prenom_acht, email_acht, mdp_acht, tel_acht, etat_acht) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($acheteur->nomAcht);
@@ -65,6 +65,7 @@ class AcheteurMySqlDAO implements AcheteurDAO{
 		$sqlQuery->set($acheteur->emailAcht);
 		$sqlQuery->set($acheteur->mdpAcht);
 		$sqlQuery->set($acheteur->telAcht);
+		$sqlQuery->setNumber($acheteur->etatAcht);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$acheteur->idAcht = $id;
@@ -77,7 +78,7 @@ class AcheteurMySqlDAO implements AcheteurDAO{
  	 * @param AcheteurMySql acheteur
  	 */
 	public function update($acheteur){
-		$sql = 'UPDATE acheteur SET nom_acht = ?, prenom_acht = ?, email_acht = ?, mdp_acht = ?, tel_acht = ? WHERE id_acht = ?';
+		$sql = 'UPDATE acheteur SET nom_acht = ?, prenom_acht = ?, email_acht = ?, mdp_acht = ?, tel_acht = ?, etat_acht = ? WHERE id_acht = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($acheteur->nomAcht);
@@ -85,6 +86,7 @@ class AcheteurMySqlDAO implements AcheteurDAO{
 		$sqlQuery->set($acheteur->emailAcht);
 		$sqlQuery->set($acheteur->mdpAcht);
 		$sqlQuery->set($acheteur->telAcht);
+		$sqlQuery->setNumber($acheteur->etatAcht);
 
 		$sqlQuery->setNumber($acheteur->idAcht);
 		return $this->executeUpdate($sqlQuery);
@@ -134,6 +136,13 @@ class AcheteurMySqlDAO implements AcheteurDAO{
 		return $this->getList($sqlQuery);
 	}
 
+	public function queryByEtatAcht($value){
+		$sql = 'SELECT * FROM acheteur WHERE etat_acht = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
 
 	public function deleteByNomAcht($value){
 		$sql = 'DELETE FROM acheteur WHERE nom_acht = ?';
@@ -170,6 +179,13 @@ class AcheteurMySqlDAO implements AcheteurDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function deleteByEtatAcht($value){
+		$sql = 'DELETE FROM acheteur WHERE etat_acht = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
 
 	
 	/**
@@ -186,6 +202,7 @@ class AcheteurMySqlDAO implements AcheteurDAO{
 		$acheteur->emailAcht = $row['email_acht'];
 		$acheteur->mdpAcht = $row['mdp_acht'];
 		$acheteur->telAcht = $row['tel_acht'];
+		$acheteur->etatAcht = $row['etat_acht'];
 
 		return $acheteur;
 	}

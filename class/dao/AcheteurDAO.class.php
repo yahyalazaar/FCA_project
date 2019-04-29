@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 interface AcheteurDAO{
 
@@ -61,6 +61,8 @@ interface AcheteurDAO{
 
 	public function queryByTelAcht($value);
 
+	public function queryByEtatAcht($value);
+
 
 	public function deleteByNomAcht($value);
 
@@ -71,6 +73,8 @@ interface AcheteurDAO{
 	public function deleteByMdpAcht($value);
 
 	public function deleteByTelAcht($value);
+
+	public function deleteByEtatAcht($value);
 
 
 }

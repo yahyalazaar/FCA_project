@@ -3,7 +3,7 @@
 	 * Object represents table 'acheteur'
 	 *
      	 * @author: http://phpdao.com
-     	 * @date: 2019-04-16 19:38	 
+     	 * @date: 2019-04-28 13:14	 
 	 */
 	class Acheteur{
 		
@@ -13,6 +13,7 @@
 		var $emailAcht;
 		var $mdpAcht;
 		var $telAcht;
+		var $etatAcht;
 		
 	}
 ?>

@@ -195,7 +195,7 @@
                                                         <td><?php echo $value->nomAdmin; ?></td>
                                                         <td><?php echo $value->prenomAdmin; ?></td>
                                                         <td><?php echo $value->emailAdmin; ?></td>
-                                                        <td style="width: 17%">
+                                                        <td style="width: 20%">
                                                             <a class="btn btn-link" href="#"><i class="fa fa-eye"></i> Voir</a>
                                                             <a class="btn btn-link" href="#"><i class="fa fa-edit"></i> Voir</a>
                                                         </td>

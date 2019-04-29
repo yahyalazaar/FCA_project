@@ -63,7 +63,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>Nouveau Admin</h2>
+                                        <h2>Nouveau WebMaster</h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -156,7 +156,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>Liste des Admins</h2>
+                                        <h2>Liste des WebMasters</h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -195,7 +195,7 @@
                                                         <td><?php echo $value->nomWm; ?></td>
                                                         <td><?php echo $value->prenomWm; ?></td>
                                                         <td><?php echo $value->emailWm; ?></td>
-                                                        <td style="width: 17%">
+                                                        <td style="width: 20%">
                                                             <a class="btn btn-link" href="#"><i class="fa fa-eye"></i> Voir</a>
                                                             <a class="btn btn-link" href="#"><i class="fa fa-edit"></i> Voir</a>
                                                         </td>

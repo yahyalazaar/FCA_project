@@ -30,7 +30,11 @@
     <body class="nav-md">
         <div class="container body">
             <div class="main_container">
-                <?php include 'template.php'; ?>
+                <?php
+                include 'template.php';
+                $user = new AcheteurMySqlDAO();
+                $user = $user->load($_SESSION['idlogin']);
+                ?>
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <div class="">
@@ -39,7 +43,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>Plain Page</h2>
+                                        <h2>Fiche de Réclamation</h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -56,9 +60,194 @@
                                             </li>
                                         </ul>
                                         <div class="clearfix"></div>
+
+                                    </div>
+                                    <div id="notif_">
+                                        <?php
+                                        if (!empty($_SESSION['errorMSG'])) {
+                                            echo $_SESSION['errorMSG'];
+                                            unset($_SESSION['errorMSG']);
+                                        }
+                                        ?>
+
                                     </div>
                                     <div class="x_content">
-                                        Add content to the page ...
+
+                                        <form  method="POST" enctype="multipart/form-data" action="Controlleurs/add_rec.php">
+                                            <table border="1" cellspacing="0" cellpadding="0" align="left" width="730" style="margin-left: 10%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="362" rowspan="2" valign="top">
+                                                            <p>
+                                                                <img
+                                                                    width="332"
+                                                                    height="112"
+                                                                    src="asset/img/rec.jpg"
+                                                                    />
+                                                            </p>
+                                                        </td>
+                                                        <td width="357" valign="bottom">
+                                                            <p align="center">
+                                                                <a name="_Toc1633131">Fiche de Réclamation</a>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="357">
+                                                            <p align="center">
+                                                                <strong>
+                                                                    Date de réclamation : <?php echo date("d/m/Y") ?>
+                                                                </strong>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="730" colspan="2">
+                                                            <p>
+                                                                <strong>Réservé au FCA</strong>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="362" valign="top">
+                                                            <table width="362" style="margin: 1%">
+                                                                <tr>
+                                                                    <td> <strong>Réalisé par :</strong></td>
+                                                                    <td><strong><?php echo $user->nomAcht . " " . $user->prenomAcht; ?>  </strong></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Numéro de tél :</td><td><?php echo $user->telAcht; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> Email :</td><td><?php echo $user->emailAcht; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Fonction :</td><td> Acheteur</td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td width="357" valign="top">
+                                                            <table width="357" style="margin: 1%">
+                                                                <tr>
+                                                                    <td><strong>Fournisseur :</td><td> <select name="frn" required="">
+                                                                            <?php
+                                                                            $frn = new FournisseurMySqlDAO();
+                                                                            $all_frn = $frn->queryAll();
+                                                                            foreach ($all_frn as $value) {
+                                                                                ?>
+                                                                                <option value="<?php echo $value->idFrn; ?>"><?php echo $value->nomFrn . " " . $value->prenomFrn; ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+
+                                                                        </strong></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Numéro de commande :</td><td><input type="text" name="nc" required=""></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Contact principal :</td><td><input type="text" name="contact" required=""></td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="730" colspan="2" valign="top">
+                                                            <p>
+                                                                <strong>Objets possibles de la réclamation : </strong>
+                                                            </p>
+                                                            <table style="margin: 2%" width='730'>
+                                                                <tr>
+                                                                    <td><input type="checkbox" name="retard" >Retard </td>
+                                                                    <td><input type="checkbox" name="qtenc" >Quantité non conforme </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> <input type="checkbox" name="qltnc" >Qualité non conforme</td>
+                                                                    <td> <input type="checkbox" name="autreObjc" id="autreObjc">Autres : 
+                                                                        <input type="text" name="autreObj" id="autreObj" required="">
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="730" colspan="2">
+                                                            <p>
+                                                                <strong>Date de</strong>
+                                                                <strong>
+                                                                    Réponse écrite souhaitée le : <input type="date" name="dateRep">
+                                                                </strong>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="730" colspan="2" valign="top">
+                                                            <p>
+                                                                <strong>Descriptif:</strong>
+                                                            </p>
+                                                            <p>
+                                                                <textarea rows="4" style="width: 98%;margin: 1%" name="description">
+                                                                
+                                                                </textarea>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="730" colspan="2" valign="top">
+                                                            <p>
+                                                                <strong>Pièces jointes si applicable : </strong>
+                                                            </p>
+                                                            <table style="margin: 1%" border='1' >
+                                                                <tr>
+                                                                    <td><input type="checkbox" name="blc" id="blc"> </td>
+                                                                    <td>Bon de livraison</td>
+                                                                    <td><input type="file" name="bl" id="bl"> </td>
+
+                                                                    <td><input type="checkbox" name="photoc" id="photoc"> </td>
+                                                                    <td>Photo</td>
+                                                                    <td><input type="file" name="photo" id="photo"> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="checkbox" name="emailc" id="emailc"> </td>
+                                                                    <td>Email</td>
+                                                                    <td><input type="file" name="email" id="emailf"> </td>
+
+                                                                    <td><input type="checkbox" name="bcc" id="bcc"> </td>
+                                                                    <td>Bon de commande</td>
+                                                                    <td><input type="file" name="bc" id="bc"> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="checkbox" name="ric" id="ric"> </td>
+                                                                    <td>Rapport d'inventaire</td>
+                                                                    <td><input type="file" name="ri" id="ri"> </td>
+
+                                                                    <td><input type="checkbox" name="autrepjc" id="autrepjc"> </td>
+                                                                    <td>Autres :</td>
+                                                                    <td><input type="file" name="autrepj" id="autrepj"> </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="730" colspan="2">
+                                                            <p>
+                                                                <strong>Signature du FCA :</strong>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="730" colspan="2" style="text-align: right;">
+                                                            <button type="reset" class="btn btn-primary">Cancel</button>
+                                                            <button  type="submit" class="btn btn-success">Submit</button>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -77,47 +266,7 @@
                 <!-- /footer content -->
             </div>
         </div>
-
-        <!-- jQuery -->
-        <script src="asset/vendors/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="asset/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- FastClick -->
-        <script src="asset/vendors/fastclick/lib/fastclick.js"></script>
-        <!-- NProgress -->
-        <script src="asset/vendors/nprogress/nprogress.js"></script>
-        <!-- Chart.js -->
-        <script src="asset/vendors/Chart.js/dist/Chart.min.js"></script>
-        <!-- gauge.js -->
-        <script src="asset/vendors/gauge.js/dist/gauge.min.js"></script>
-        <!-- bootstrap-progressbar -->
-        <script src="asset/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-        <!-- iCheck -->
-        <script src="asset/vendors/iCheck/icheck.min.js"></script>
-        <!-- Skycons -->
-        <script src="asset/vendors/skycons/skycons.js"></script>
-        <!-- Flot -->
-        <script src="asset/vendors/Flot/jquery.flot.js"></script>
-        <script src="asset/vendors/Flot/jquery.flot.pie.js"></script>
-        <script src="asset/vendors/Flot/jquery.flot.time.js"></script>
-        <script src="asset/vendors/Flot/jquery.flot.stack.js"></script>
-        <script src="asset/vendors/Flot/jquery.flot.resize.js"></script>
-        <!-- Flot plugins -->
-        <script src="asset/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-        <script src="asset/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-        <script src="asset/vendors/flot.curvedlines/curvedLines.js"></script>
-        <!-- DateJS -->
-        <script src="asset/vendors/DateJS/build/date.js"></script>
-        <!-- JQVMap -->
-        <script src="asset/vendors/jqvmap/dist/jquery.vmap.js"></script>
-        <script src="asset/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="asset/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-        <!-- bootstrap-daterangepicker -->
-        <script src="asset/vendors/moment/min/moment.min.js"></script>
-        <script src="asset/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-        <!-- Custom Theme Scripts -->
-        <script src="asset/build/js/custom.min.js"></script>
+        <?php include 'script.php'; ?>
 
     </body>
 </html>

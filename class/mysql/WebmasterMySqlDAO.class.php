@@ -3,7 +3,7 @@
  * Class that operate on table 'webmaster'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 class WebmasterMySqlDAO implements WebmasterDAO{
 
@@ -57,9 +57,10 @@ class WebmasterMySqlDAO implements WebmasterDAO{
  	 * @param WebmasterMySql webmaster
  	 */
 	public function insert($webmaster){
-		$sql = 'INSERT INTO webmaster (nom_wm, prenom_wm, email_wm, mdp_wm, tel_wm) VALUES (?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO webmaster (Adm_id_admin, nom_wm, prenom_wm, email_wm, mdp_wm, tel_wm) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($webmaster->admIdAdmin);
 		$sqlQuery->set($webmaster->nomWm);
 		$sqlQuery->set($webmaster->prenomWm);
 		$sqlQuery->set($webmaster->emailWm);
@@ -77,9 +78,10 @@ class WebmasterMySqlDAO implements WebmasterDAO{
  	 * @param WebmasterMySql webmaster
  	 */
 	public function update($webmaster){
-		$sql = 'UPDATE webmaster SET nom_wm = ?, prenom_wm = ?, email_wm = ?, mdp_wm = ?, tel_wm = ? WHERE id_admin = ?';
+		$sql = 'UPDATE webmaster SET Adm_id_admin = ?, nom_wm = ?, prenom_wm = ?, email_wm = ?, mdp_wm = ?, tel_wm = ? WHERE id_admin = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($webmaster->admIdAdmin);
 		$sqlQuery->set($webmaster->nomWm);
 		$sqlQuery->set($webmaster->prenomWm);
 		$sqlQuery->set($webmaster->emailWm);
@@ -97,6 +99,13 @@ class WebmasterMySqlDAO implements WebmasterDAO{
 		$sql = 'DELETE FROM webmaster';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function queryByAdmIdAdmin($value){
+		$sql = 'SELECT * FROM webmaster WHERE Adm_id_admin = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
 	}
 
 	public function queryByNomWm($value){
@@ -134,6 +143,13 @@ class WebmasterMySqlDAO implements WebmasterDAO{
 		return $this->getList($sqlQuery);
 	}
 
+
+	public function deleteByAdmIdAdmin($value){
+		$sql = 'DELETE FROM webmaster WHERE Adm_id_admin = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
 
 	public function deleteByNomWm($value){
 		$sql = 'DELETE FROM webmaster WHERE nom_wm = ?';
@@ -181,6 +197,7 @@ class WebmasterMySqlDAO implements WebmasterDAO{
 		$webmaster = new Webmaster();
 		
 		$webmaster->idAdmin = $row['id_admin'];
+		$webmaster->admIdAdmin = $row['Adm_id_admin'];
 		$webmaster->nomWm = $row['nom_wm'];
 		$webmaster->prenomWm = $row['prenom_wm'];
 		$webmaster->emailWm = $row['email_wm'];

@@ -22,6 +22,20 @@ class DAOFactory{
 	}
 
 	/**
+	 * @return ActionDAO
+	 */
+	public static function getActionDAO(){
+		return new ActionMySqlExtDAO();
+	}
+
+	/**
+	 * @return AdAchtDAO
+	 */
+	public static function getAdAchtDAO(){
+		return new AdAchtMySqlExtDAO();
+	}
+
+	/**
 	 * @return AdminDAO
 	 */
 	public static function getAdminDAO(){
@@ -40,6 +54,13 @@ class DAOFactory{
 	 */
 	public static function getAdminFaDAO(){
 		return new AdminFaMySqlExtDAO();
+	}
+
+	/**
+	 * @return DispositionDAO
+	 */
+	public static function getDispositionDAO(){
+		return new DispositionMySqlExtDAO();
 	}
 
 	/**
@@ -71,10 +92,31 @@ class DAOFactory{
 	}
 
 	/**
+	 * @return FrnSegDAO
+	 */
+	public static function getFrnSegDAO(){
+		return new FrnSegMySqlExtDAO();
+	}
+
+	/**
 	 * @return HistoriquerfiDAO
 	 */
 	public static function getHistoriquerfiDAO(){
 		return new HistoriquerfiMySqlExtDAO();
+	}
+
+	/**
+	 * @return ObjetsDAO
+	 */
+	public static function getObjetsDAO(){
+		return new ObjetsMySqlExtDAO();
+	}
+
+	/**
+	 * @return PiecejointesDAO
+	 */
+	public static function getPiecejointesDAO(){
+		return new PiecejointesMySqlExtDAO();
 	}
 
 	/**
@@ -92,17 +134,17 @@ class DAOFactory{
 	}
 
 	/**
+	 * @return SegementDAO
+	 */
+	public static function getSegementDAO(){
+		return new SegementMySqlExtDAO();
+	}
+
+	/**
 	 * @return WebmasterDAO
 	 */
 	public static function getWebmasterDAO(){
 		return new WebmasterMySqlExtDAO();
-	}
-
-	/**
-	 * @return WmAchtDAO
-	 */
-	public static function getWmAchtDAO(){
-		return new WmAchtMySqlExtDAO();
 	}
 
 

@@ -54,126 +54,126 @@
                 <?php include 'template.php'; ?>
                 <!-- page content -->
                 <div class="right_col" role="main">
+                    <?php if ($_SESSION['cpt'] == "acht") { ?>
+                        <div class="">
+                            <div class="clearfix"></div>
+                            <div id="notif_"></div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>Nouveau Fournisseur</h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                </li>
+                                                <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                                                        data-toggle="dropdown" role="button" aria-expanded="false"><i
+                                                            class="fa fa-wrench"></i></a>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="#">Settings 1</a></li>
+                                                        <li><a href="#">Settings 2</a></li>
+                                                    </ul></li>
+                                                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <form id="add_user" class="form-horizontal form-label-left" novalidate="" method="post" >
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                           for="nom">Nom<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="nom" class="form-control col-md-7 col-xs-12"
+                                                               data-validate-length-range="3" data-validate-words="1"
+                                                               name="nom" required="required" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                           for="prenom">Prénom<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="prenom" class="form-control col-md-7 col-xs-12"
+                                                               data-validate-length-range="3" data-validate-words="1"
+                                                               name="prenom" required="required" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                           for="email">Email<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="email" class="form-control col-md-7 col-xs-12"
+                                                               data-validate-length-range="3" data-validate-words="1"
+                                                               name="email" required="required" type="email">
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                           for="mot_de_passe">Mot de passe<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="mot_de_passe"
+                                                               class="form-control col-md-7 col-xs-12"
+                                                               data-validate-length-range="3" data-validate-words="1"
+                                                               name="mot_de_passe" required="required" type="text">
+                                                        <button id="gener_pwd" type="button">
+                                                            <i class="fa fa-refresh"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                           for="telephone">Téléphone<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input id="telephone"
+                                                               class="form-control col-md-7 col-xs-12"
+                                                               data-validate-length-range="10" data-validate-words="1"
+                                                               name="telephone" required="required" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                           for="classe">Segments<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class="form-control col-md-7 col-xs-12" id="idseg"
+                                                                name="idseg[]" required="" multiple="">
+                                                                    <?php
+                                                                    include_once 'include_dao.php';
+                                                                    $sg = new SegementMySqlDAO();
+                                                                    $all_sg = $sg->queryAll();
+                                                                    foreach ($all_sg as $value) {
+                                                                        ?>
+                                                                <option value="<?php echo $value->idSeg; ?>"><?php echo $value->nomSeg; ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-3">
+                                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                                        <button id="add_frn" type="button" class="btn btn-success">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
 
-                    <div class="">
-
-                        <div class="clearfix"></div>
-                        <div id="notif_"></div>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2>Nouveau Admin</h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                            <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                                                    data-toggle="dropdown" role="button" aria-expanded="false"><i
-                                                        class="fa fa-wrench"></i></a>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Settings 1</a></li>
-                                                    <li><a href="#">Settings 2</a></li>
-                                                </ul></li>
-                                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-                                        </ul>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="x_content">
-                                        <form id="add_user" class="form-horizontal form-label-left" novalidate="" method="post">
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="nom">Nom<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="nom" class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="3" data-validate-words="1"
-                                                           name="nom" required="required" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="prenom">Prénom<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="prenom" class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="3" data-validate-words="1"
-                                                           name="prenom" required="required" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="email">Email<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="email" class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="3" data-validate-words="1"
-                                                           name="email" required="required" type="email">
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="mot_de_passe">Mot de passe<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="mot_de_passe"
-                                                           class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="3" data-validate-words="1"
-                                                           name="mot_de_passe" required="required" type="text">
-                                                    <button id="gener_pwd" type="button">
-                                                        <i class="fa fa-refresh"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="telephone">Téléphone<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="telephone"
-                                                           class="form-control col-md-7 col-xs-12"
-                                                           data-validate-length-range="10" data-validate-words="1"
-                                                           name="telephone" required="required" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="classe">Famiille d'achat<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select class="form-control col-md-7 col-xs-12" id="classe"
-                                                            name="idfa" required="">
-                                                                <?php
-                                                                include_once 'include_dao.php';
-                                                                $fa = new FamilleachatMySqlDAO();
-                                                                $all_fa = $fa->queryAll();
-                                                                foreach ($all_fa as $value) {
-                                                                    ?>
-                                                            <option value="<?php echo $value->idFa; ?>"><?php echo $value->nomFa; ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="ln_solid"></div>
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-md-offset-3">
-                                                    <button type="reset" class="btn btn-primary">Cancel</button>
-                                                    <button id="add_frn" type="button" class="btn btn-success">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                     <div class="">
                         <div class="clearfix"></div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>Liste des Admins</h2>
+                                        <h2>Liste des Fournisseurs</h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -212,7 +212,7 @@
                                                         <td><?php echo $value->nomFrn; ?></td>
                                                         <td><?php echo $value->prenomFrn; ?></td>
                                                         <td><?php echo $value->emailFrn; ?></td>
-                                                        <td style="width: 17%">
+                                                        <td style="width: 20%">
                                                             <a class="btn btn-link" href="#"><i class="fa fa-eye"></i> Voir</a>
                                                             <a class="btn btn-link" href="#"><i class="fa fa-edit"></i> Voir</a>
                                                         </td>

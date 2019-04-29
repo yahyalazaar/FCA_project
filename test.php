@@ -1,10 +1,14 @@
 <?php
-include_once 'include_dao.php';
-$admin = new AdminMySqlDAO();
-$admin = $admin->queryAll();
 
-echo date("Y-m-d H:m:s");
+//extract($_POST);
 
 
+//echo '<img src="data:image/jpeg;base64,' . base64_encode(file_get_contents($_FILES['blPj']['tmp_name'])) . '"/>';
 
+//print_r($_POST);
 
+//print_r($_FILES);
+
+if(!empty($_POST['retard']))
+    echo "ok";
+else echo "not";

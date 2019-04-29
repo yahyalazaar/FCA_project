@@ -3,7 +3,7 @@
  * Class that operate on table 'fournisseur'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 class FournisseurMySqlDAO implements FournisseurDAO{
 
@@ -57,15 +57,15 @@ class FournisseurMySqlDAO implements FournisseurDAO{
  	 * @param FournisseurMySql fournisseur
  	 */
 	public function insert($fournisseur){
-		$sql = 'INSERT INTO fournisseur (id_fa, nom_frn, prenom_frn, email_frn, mdp_frn, tel_frn) VALUES (?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO fournisseur (nom_frn, prenom_frn, email_frn, mdp_frn, tel_frn, etat_frn) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($fournisseur->idFa);
 		$sqlQuery->set($fournisseur->nomFrn);
 		$sqlQuery->set($fournisseur->prenomFrn);
 		$sqlQuery->set($fournisseur->emailFrn);
 		$sqlQuery->set($fournisseur->mdpFrn);
 		$sqlQuery->set($fournisseur->telFrn);
+		$sqlQuery->setNumber($fournisseur->etatFrn);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$fournisseur->idFrn = $id;
@@ -78,15 +78,15 @@ class FournisseurMySqlDAO implements FournisseurDAO{
  	 * @param FournisseurMySql fournisseur
  	 */
 	public function update($fournisseur){
-		$sql = 'UPDATE fournisseur SET id_fa = ?, nom_frn = ?, prenom_frn = ?, email_frn = ?, mdp_frn = ?, tel_frn = ? WHERE id_frn = ?';
+		$sql = 'UPDATE fournisseur SET nom_frn = ?, prenom_frn = ?, email_frn = ?, mdp_frn = ?, tel_frn = ?, etat_frn = ? WHERE id_frn = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($fournisseur->idFa);
 		$sqlQuery->set($fournisseur->nomFrn);
 		$sqlQuery->set($fournisseur->prenomFrn);
 		$sqlQuery->set($fournisseur->emailFrn);
 		$sqlQuery->set($fournisseur->mdpFrn);
 		$sqlQuery->set($fournisseur->telFrn);
+		$sqlQuery->setNumber($fournisseur->etatFrn);
 
 		$sqlQuery->setNumber($fournisseur->idFrn);
 		return $this->executeUpdate($sqlQuery);
@@ -99,13 +99,6 @@ class FournisseurMySqlDAO implements FournisseurDAO{
 		$sql = 'DELETE FROM fournisseur';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
-	}
-
-	public function queryByIdFa($value){
-		$sql = 'SELECT * FROM fournisseur WHERE id_fa = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
-		return $this->getList($sqlQuery);
 	}
 
 	public function queryByNomFrn($value){
@@ -143,13 +136,13 @@ class FournisseurMySqlDAO implements FournisseurDAO{
 		return $this->getList($sqlQuery);
 	}
 
-
-	public function deleteByIdFa($value){
-		$sql = 'DELETE FROM fournisseur WHERE id_fa = ?';
+	public function queryByEtatFrn($value){
+		$sql = 'SELECT * FROM fournisseur WHERE etat_frn = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
-		return $this->executeUpdate($sqlQuery);
+		return $this->getList($sqlQuery);
 	}
+
 
 	public function deleteByNomFrn($value){
 		$sql = 'DELETE FROM fournisseur WHERE nom_frn = ?';
@@ -186,6 +179,13 @@ class FournisseurMySqlDAO implements FournisseurDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function deleteByEtatFrn($value){
+		$sql = 'DELETE FROM fournisseur WHERE etat_frn = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
 
 	
 	/**
@@ -197,12 +197,12 @@ class FournisseurMySqlDAO implements FournisseurDAO{
 		$fournisseur = new Fournisseur();
 		
 		$fournisseur->idFrn = $row['id_frn'];
-		$fournisseur->idFa = $row['id_fa'];
 		$fournisseur->nomFrn = $row['nom_frn'];
 		$fournisseur->prenomFrn = $row['prenom_frn'];
 		$fournisseur->emailFrn = $row['email_frn'];
 		$fournisseur->mdpFrn = $row['mdp_frn'];
 		$fournisseur->telFrn = $row['tel_frn'];
+		$fournisseur->etatFrn = $row['etat_frn'];
 
 		return $fournisseur;
 	}

@@ -72,3 +72,5 @@ src="asset/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></scri
 <script src="asset/vendors/pdfmake/build/vfs_fonts.js"></script>
 <script src="asset/pGenerator.jquery.js"></script>
 <script src="Controlleurs/scripts/script.js"></script>
+<!-- jQuery Smart Wizard -->
+<script src="asset/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>

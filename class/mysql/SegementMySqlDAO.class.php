@@ -1,24 +1,22 @@
 <?php
 /**
- * Class that operate on table 'wm_acht'. Database Mysql.
+ * Class that operate on table 'segement'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
-class WmAchtMySqlDAO implements WmAchtDAO{
+class SegementMySqlDAO implements SegementDAO{
 
 	/**
 	 * Get Domain object by primry key
 	 *
 	 * @param String $id primary key
-	 * @return WmAchtMySql 
+	 * @return SegementMySql 
 	 */
-	public function load($idAdmin, $idAcht){
-		$sql = 'SELECT * FROM wm_acht WHERE id_admin = ?  AND id_acht = ? ';
+	public function load($id){
+		$sql = 'SELECT * FROM segement WHERE id_seg = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($idAdmin);
-		$sqlQuery->setNumber($idAcht);
-
+		$sqlQuery->setNumber($id);
 		return $this->getRow($sqlQuery);
 	}
 
@@ -26,7 +24,7 @@ class WmAchtMySqlDAO implements WmAchtDAO{
 	 * Get all records from table
 	 */
 	public function queryAll(){
-		$sql = 'SELECT * FROM wm_acht';
+		$sql = 'SELECT * FROM segement';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->getList($sqlQuery);
 	}
@@ -37,63 +35,54 @@ class WmAchtMySqlDAO implements WmAchtDAO{
 	 * @param $orderColumn column name
 	 */
 	public function queryAllOrderBy($orderColumn){
-		$sql = 'SELECT * FROM wm_acht ORDER BY '.$orderColumn;
+		$sql = 'SELECT * FROM segement ORDER BY '.$orderColumn;
 		$sqlQuery = new SqlQuery($sql);
 		return $this->getList($sqlQuery);
 	}
 	
 	/**
  	 * Delete record from table
- 	 * @param wmAcht primary key
+ 	 * @param segement primary key
  	 */
-	public function delete($idAdmin, $idAcht){
-		$sql = 'DELETE FROM wm_acht WHERE id_admin = ?  AND id_acht = ? ';
+	public function delete($id_seg){
+		$sql = 'DELETE FROM segement WHERE id_seg = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($idAdmin);
-		$sqlQuery->setNumber($idAcht);
-
+		$sqlQuery->setNumber($id_seg);
 		return $this->executeUpdate($sqlQuery);
 	}
 	
 	/**
  	 * Insert record to table
  	 *
- 	 * @param WmAchtMySql wmAcht
+ 	 * @param SegementMySql segement
  	 */
-	public function insert($wmAcht){
-		$sql = 'INSERT INTO wm_acht (date_wm_acht, type, id_admin, id_acht) VALUES (?, ?, ?, ?)';
+	public function insert($segement){
+		$sql = 'INSERT INTO segement (id_admin, id_fa, nom_seg) VALUES (?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($wmAcht->dateWmAcht);
-		$sqlQuery->set($wmAcht->type);
+		$sqlQuery->setNumber($segement->idAdmin);
+		$sqlQuery->setNumber($segement->idFa);
+		$sqlQuery->set($segement->nomSeg);
 
-		
-		$sqlQuery->setNumber($wmAcht->idAdmin);
-
-		$sqlQuery->setNumber($wmAcht->idAcht);
-
-		$this->executeInsert($sqlQuery);	
-		//$wmAcht->id = $id;
-		//return $id;
+		$id = $this->executeInsert($sqlQuery);	
+		$segement->idSeg = $id;
+		return $id;
 	}
 	
 	/**
  	 * Update record in table
  	 *
- 	 * @param WmAchtMySql wmAcht
+ 	 * @param SegementMySql segement
  	 */
-	public function update($wmAcht){
-		$sql = 'UPDATE wm_acht SET date_wm_acht = ?, type = ? WHERE id_admin = ?  AND id_acht = ? ';
+	public function update($segement){
+		$sql = 'UPDATE segement SET id_admin = ?, id_fa = ?, nom_seg = ? WHERE id_seg = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($wmAcht->dateWmAcht);
-		$sqlQuery->set($wmAcht->type);
+		$sqlQuery->setNumber($segement->idAdmin);
+		$sqlQuery->setNumber($segement->idFa);
+		$sqlQuery->set($segement->nomSeg);
 
-		
-		$sqlQuery->setNumber($wmAcht->idAdmin);
-
-		$sqlQuery->setNumber($wmAcht->idAcht);
-
+		$sqlQuery->setNumber($segement->idSeg);
 		return $this->executeUpdate($sqlQuery);
 	}
 
@@ -101,35 +90,49 @@ class WmAchtMySqlDAO implements WmAchtDAO{
  	 * Delete all rows
  	 */
 	public function clean(){
-		$sql = 'DELETE FROM wm_acht';
+		$sql = 'DELETE FROM segement';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function queryByDateWmAcht($value){
-		$sql = 'SELECT * FROM wm_acht WHERE date_wm_acht = ?';
+	public function queryByIdAdmin($value){
+		$sql = 'SELECT * FROM segement WHERE id_admin = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByIdFa($value){
+		$sql = 'SELECT * FROM segement WHERE id_fa = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByNomSeg($value){
+		$sql = 'SELECT * FROM segement WHERE nom_seg = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByType($value){
-		$sql = 'SELECT * FROM wm_acht WHERE type = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->getList($sqlQuery);
-	}
 
-
-	public function deleteByDateWmAcht($value){
-		$sql = 'DELETE FROM wm_acht WHERE date_wm_acht = ?';
+	public function deleteByIdAdmin($value){
+		$sql = 'DELETE FROM segement WHERE id_admin = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
+		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByType($value){
-		$sql = 'DELETE FROM wm_acht WHERE type = ?';
+	public function deleteByIdFa($value){
+		$sql = 'DELETE FROM segement WHERE id_fa = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByNomSeg($value){
+		$sql = 'DELETE FROM segement WHERE nom_seg = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
@@ -140,17 +143,17 @@ class WmAchtMySqlDAO implements WmAchtDAO{
 	/**
 	 * Read row
 	 *
-	 * @return WmAchtMySql 
+	 * @return SegementMySql 
 	 */
 	protected function readRow($row){
-		$wmAcht = new WmAcht();
+		$segement = new Segement();
 		
-		$wmAcht->idAdmin = $row['id_admin'];
-		$wmAcht->idAcht = $row['id_acht'];
-		$wmAcht->dateWmAcht = $row['date_wm_acht'];
-		$wmAcht->type = $row['type'];
+		$segement->idSeg = $row['id_seg'];
+		$segement->idAdmin = $row['id_admin'];
+		$segement->idFa = $row['id_fa'];
+		$segement->nomSeg = $row['nom_seg'];
 
-		return $wmAcht;
+		return $segement;
 	}
 	
 	protected function getList($sqlQuery){
@@ -165,7 +168,7 @@ class WmAchtMySqlDAO implements WmAchtDAO{
 	/**
 	 * Get row
 	 *
-	 * @return WmAchtMySql 
+	 * @return SegementMySql 
 	 */
 	protected function getRow($sqlQuery){
 		$tab = QueryExecutor::execute($sqlQuery);

@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 interface WebmasterDAO{
 
@@ -51,6 +51,8 @@ interface WebmasterDAO{
 	 */
 	public function clean();
 
+	public function queryByAdmIdAdmin($value);
+
 	public function queryByNomWm($value);
 
 	public function queryByPrenomWm($value);
@@ -61,6 +63,8 @@ interface WebmasterDAO{
 
 	public function queryByTelWm($value);
 
+
+	public function deleteByAdmIdAdmin($value);
 
 	public function deleteByNomWm($value);
 

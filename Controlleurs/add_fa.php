@@ -4,16 +4,12 @@ session_start();
 include_once '../include_dao.php';
 extract($_POST);
 
-if (!empty($nom) && !empty($code) && !empty($type) && !empty($services_concernes) && !empty($segement1) && !empty($segement2) && !empty($segement3) && !empty($segement4) && !empty($leviers) && !empty($classe)) {
+if (!empty($nom) && !empty($code) && !empty($type) && !empty($services_concernes) && !empty($leviers) && !empty($classe)) {
     
     $fa = new Familleachat();
     $fa->nomFa = $nom;
     $fa->codeFa = $code;
     $fa->classeFa = $classe;
-    $fa->segement1Fa = $segement1;
-    $fa->segement2Fa = $segement2;
-    $fa->segement3Fa = $segement3;
-    $fa->segement4Fa = $segement4;
     $fa->typeFa = $type;
     $fa->levierFa = $leviers;
     $fa->serviceFa = $services_concernes;

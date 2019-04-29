@@ -14,7 +14,7 @@ if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty(
         $admin->telAdmin = $telephone;
         $admin->emailAdmin = $email;
         $admin->mdpAdmin = $mot_de_passe;
-
+        $admin->etatAdmin = 1;
 
         $last = $add->insert($admin);
 

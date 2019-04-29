@@ -1,15 +1,15 @@
 <?php
 	/**
-	 * Object represents table 'wm_acht'
+	 * Object represents table 'ad_acht'
 	 *
      	 * @author: http://phpdao.com
-     	 * @date: 2019-04-16 19:38	 
+     	 * @date: 2019-04-28 13:14	 
 	 */
-	class WmAcht{
+	class AdAcht{
 		
 		var $idAdmin;
 		var $idAcht;
-		var $dateWmAcht;
+		var $dateAdAcht;
 		var $type;
 		
 	}

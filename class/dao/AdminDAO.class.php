@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 interface AdminDAO{
 
@@ -61,6 +61,8 @@ interface AdminDAO{
 
 	public function queryByTelAdmin($value);
 
+	public function queryByEtatAdmin($value);
+
 
 	public function deleteByNomAdmin($value);
 
@@ -71,6 +73,8 @@ interface AdminDAO{
 	public function deleteByMdpAdmin($value);
 
 	public function deleteByTelAdmin($value);
+
+	public function deleteByEtatAdmin($value);
 
 
 }

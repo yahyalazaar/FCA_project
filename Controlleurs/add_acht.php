@@ -16,15 +16,15 @@ if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty(
         $acht->telAcht = $telephone;
         $acht->emailAcht = $email;
         $acht->mdpAcht = $mot_de_passe;
-
+        $acht->etatAcht = 0;
 
         $last = $add->insert($acht);
 
-        $fk = new WmAchtMySqlDAO();
-        $aa = new WmAcht();
+        $fk = new AdAchtMySqlDAO();
+        $aa = new AdAcht();
         $aa->idAcht = $last;
         $aa->idAdmin = $_SESSION['idlogin'];
-        $aa->dateWmAcht = date("Y-m-d H:m:s");
+        $aa->dateAdAcht = date("Y-m-d H:m:s");
         $aa->type = "add";
         $fk->insert($aa);
         $msg = '<div class="alert alert-success alert-dismissible fade in" role="alert">

@@ -3,17 +3,17 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
-interface WmAchtDAO{
+interface FrnSegDAO{
 
 	/**
 	 * Get Domain object by primry key
 	 *
 	 * @param String $id primary key
-	 * @Return WmAcht 
+	 * @Return FrnSeg 
 	 */
-	public function load($idAdmin, $idAcht);
+	public function load($idFrn, $idSeg);
 
 	/**
 	 * Get all records from table
@@ -28,37 +28,29 @@ interface WmAchtDAO{
 	
 	/**
  	 * Delete record from table
- 	 * @param wmAcht primary key
+ 	 * @param frnSeg primary key
  	 */
-	public function delete($idAdmin, $idAcht);
+	public function delete($idFrn, $idSeg);
 	
 	/**
  	 * Insert record to table
  	 *
- 	 * @param WmAcht wmAcht
+ 	 * @param FrnSeg frnSeg
  	 */
-	public function insert($wmAcht);
+	public function insert($frnSeg);
 	
 	/**
  	 * Update record in table
  	 *
- 	 * @param WmAcht wmAcht
+ 	 * @param FrnSeg frnSeg
  	 */
-	public function update($wmAcht);	
+	public function update($frnSeg);	
 
 	/**
 	 * Delete all rows
 	 */
 	public function clean();
 
-	public function queryByDateWmAcht($value);
-
-	public function queryByType($value);
-
-
-	public function deleteByDateWmAcht($value);
-
-	public function deleteByType($value);
 
 
 }

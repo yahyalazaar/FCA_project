@@ -14,6 +14,7 @@ if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty(
         $wm->telWm = $telephone;
         $wm->emailWm = $email;
         $wm->mdpWm = $mot_de_passe;
+        $wm->admIdAdmin = $_SESSION['idlogin'];
         $last = $add->insert($wm);
 
         $msg = '<div class="alert alert-success alert-dismissible fade in" role="alert">

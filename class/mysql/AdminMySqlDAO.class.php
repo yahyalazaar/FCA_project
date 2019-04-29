@@ -3,7 +3,7 @@
  * Class that operate on table 'admin'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 class AdminMySqlDAO implements AdminDAO{
 
@@ -57,7 +57,7 @@ class AdminMySqlDAO implements AdminDAO{
  	 * @param AdminMySql admin
  	 */
 	public function insert($admin){
-		$sql = 'INSERT INTO admin (nom_admin, prenom_admin, email_admin, mdp_admin, tel_admin) VALUES (?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO admin (nom_admin, prenom_admin, email_admin, mdp_admin, tel_admin, etat_admin) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($admin->nomAdmin);
@@ -65,6 +65,7 @@ class AdminMySqlDAO implements AdminDAO{
 		$sqlQuery->set($admin->emailAdmin);
 		$sqlQuery->set($admin->mdpAdmin);
 		$sqlQuery->set($admin->telAdmin);
+		$sqlQuery->setNumber($admin->etatAdmin);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$admin->idAdmin = $id;
@@ -77,7 +78,7 @@ class AdminMySqlDAO implements AdminDAO{
  	 * @param AdminMySql admin
  	 */
 	public function update($admin){
-		$sql = 'UPDATE admin SET nom_admin = ?, prenom_admin = ?, email_admin = ?, mdp_admin = ?, tel_admin = ? WHERE id_admin = ?';
+		$sql = 'UPDATE admin SET nom_admin = ?, prenom_admin = ?, email_admin = ?, mdp_admin = ?, tel_admin = ?, etat_admin = ? WHERE id_admin = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($admin->nomAdmin);
@@ -85,6 +86,7 @@ class AdminMySqlDAO implements AdminDAO{
 		$sqlQuery->set($admin->emailAdmin);
 		$sqlQuery->set($admin->mdpAdmin);
 		$sqlQuery->set($admin->telAdmin);
+		$sqlQuery->setNumber($admin->etatAdmin);
 
 		$sqlQuery->setNumber($admin->idAdmin);
 		return $this->executeUpdate($sqlQuery);
@@ -134,6 +136,13 @@ class AdminMySqlDAO implements AdminDAO{
 		return $this->getList($sqlQuery);
 	}
 
+	public function queryByEtatAdmin($value){
+		$sql = 'SELECT * FROM admin WHERE etat_admin = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
 
 	public function deleteByNomAdmin($value){
 		$sql = 'DELETE FROM admin WHERE nom_admin = ?';
@@ -170,6 +179,13 @@ class AdminMySqlDAO implements AdminDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function deleteByEtatAdmin($value){
+		$sql = 'DELETE FROM admin WHERE etat_admin = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
 
 	
 	/**
@@ -186,6 +202,7 @@ class AdminMySqlDAO implements AdminDAO{
 		$admin->emailAdmin = $row['email_admin'];
 		$admin->mdpAdmin = $row['mdp_admin'];
 		$admin->telAdmin = $row['tel_admin'];
+		$admin->etatAdmin = $row['etat_admin'];
 
 		return $admin;
 	}

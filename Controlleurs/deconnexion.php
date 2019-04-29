@@ -2,5 +2,5 @@
 
 session_start();
 session_destroy();
-header("location: ../authentification.php");
+header("location: ../login.php");
 

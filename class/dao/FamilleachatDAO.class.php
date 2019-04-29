@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-16 19:38
+ * @date: 2019-04-28 13:14
  */
 interface FamilleachatDAO{
 
@@ -57,14 +57,6 @@ interface FamilleachatDAO{
 
 	public function queryByTypeFa($value);
 
-	public function queryBySegement1Fa($value);
-
-	public function queryBySegement2Fa($value);
-
-	public function queryBySegement3Fa($value);
-
-	public function queryBySegement4Fe($value);
-
 	public function queryByServiceFa($value);
 
 	public function queryByClasseFa($value);
@@ -77,14 +69,6 @@ interface FamilleachatDAO{
 	public function deleteByCodeFa($value);
 
 	public function deleteByTypeFa($value);
-
-	public function deleteBySegement1Fa($value);
-
-	public function deleteBySegement2Fa($value);
-
-	public function deleteBySegement3Fa($value);
-
-	public function deleteBySegement4Fe($value);
 
 	public function deleteByServiceFa($value);
 

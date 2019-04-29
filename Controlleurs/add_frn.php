@@ -4,20 +4,26 @@ session_start();
 include_once '../include_dao.php';
 extract($_POST);
 
-if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty($mot_de_passe) || !empty($idfa)) {
+if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty($mot_de_passe)) {
+
     $add = new FournisseurMySqlDAO();
-    if ($add->queryByEmailFournisseur($email) == NULL) {
+    if ($add->queryByEmailFrn($email) == NULL) {
+
         $Fournisseur = new Fournisseur();
         $Fournisseur->nomFrn = $nom;
-        $Fournisseur->idFa = $idfa;
         $Fournisseur->prenomFrn = $prenom;
         $Fournisseur->telFrn = $telephone;
         $Fournisseur->emailFrn = $email;
         $Fournisseur->mdpFrn = $mot_de_passe;
-
-
+        $Fournisseur->etatFrn = 0;
         $last = $add->insert($Fournisseur);
-
+        $addseg = new FrnSegMySqlDAO();
+        foreach ($idseg as $s) {
+            $fs = new FrnSeg();
+            $fs->idFrn = $last;
+            $fs->idSeg = $s;
+            $addseg->insert($fs);
+        }
         $fk = new AchtFrnMySqlDAO();
         $aa = new AchtFrn();
         $aa->idFrn = $last;
@@ -25,6 +31,7 @@ if (!empty($email) || !empty($nom) || !empty($prenom) || !empty($tel) || !empty(
         $aa->dateAchtFrn = date("Y-m-d H:m:s");
         $aa->type = "add";
         $fk->insert($aa);
+
         $msg = '<div class="alert alert-success alert-dismissible fade in" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
   </button>
