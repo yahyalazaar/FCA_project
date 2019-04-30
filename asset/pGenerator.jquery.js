@@ -1,20 +1,95 @@
+function total() {
+    var not = 0.2, qlt = 0.15, logs = 0.15, hst = 0.15, eco = 0.2, comm = 0.15;
+    var notNote = 0, qltNote = 0, logsNote = 0, hstNote = 0, ecoNote = 0, commNote = 0;
+    var notPond = 0, qltPond = 0, logsPond = 0, hstPond = 0, ecoPond = 0, commPond = 0;
+    for (var i = 0; i < parseInt($('#indice').val()); i++) {
+
+        if (i < 12) {
+            if ($('#prise_cmpt_' + i).val() === 'Oui') {
+                notPond = notPond + parseFloat($("#ponderation_" + i).val());
+                notNote = notNote + parseFloat($("#note_" + i).val());
+            }
+        } else if (i >= 12 && i < 14) {
+            if ($('#prise_cmpt_' + i).val() === 'Oui') {
+                qltPond = qltPond + parseFloat($("#ponderation_" + i).val());
+                qltNote = qltNote + parseFloat($("#note_" + i).val());
+            }
+        } else if (i >= 14 && i < 15) {
+            if ($('#prise_cmpt_' + i).val() === 'Oui') {
+                logsPond = logsPond + parseFloat($("#ponderation_" + i).val());
+                logsNote = logsNote + parseFloat($("#note_" + i).val());
+            }
+        } else if (i >= 15 && i < 20) {
+            if ($('#prise_cmpt_' + i).val() === 'Oui') {
+                hstPond = hstPond + parseFloat($("#ponderation_" + i).val());
+                hstNote = hstNote + parseFloat($("#note_" + i).val());
+            }
+        } else if (i >= 20 && i < 26) {
+            if ($('#prise_cmpt_' + i).val() === 'Oui') {
+                ecoPond = ecoPond + parseFloat($("#ponderation_" + i).val());
+                ecoNote = ecoNote + parseFloat($("#note_" + i).val());
+            }
+        } else if (i >= 26) {
+            if ($('#prise_cmpt_' + i).val() === 'Oui') {
+                commPond = commPond + parseFloat($("#ponderation_" + i).val());
+                commNote = commNote + parseFloat($("#note_" + i).val());
+            }
+        }
+    }
+    if (notPond != 0 && qltPond != 0 && logsPond != 0 && hstPond != 0 && ecoPond != 0 && commPond != 0) {
+        var notSum = parseFloat((notNote / notPond));
+        var qltSum = parseFloat((qltNote / qltPond));
+        var logsSum = parseFloat((logsNote / logsPond));
+        var hstSum = parseFloat((hstNote / hstPond));
+        var ecoSum = parseFloat((ecoNote / ecoPond));
+        var commSum = parseFloat((commNote / commPond));
+
+        var sc_final = notSum * not + qltSum * qlt + logsSum * logs + hstSum * hst + ecoSum * eco + commSum * comm;
+        var classe = '';
+        if (sc_final >= 4 && ecoSum > 2 && hstSum > 2)
+        {
+            classe = 'A';
+        } else if (sc_final >= 3 && sc_final < 4 && ecoSum > 2 && hstSum > 2)
+        {
+            classe = 'B';
+        } else if (sc_final < 3 || ecoSum <= 2 || hstSum <= 2)
+        {
+            classe = 'C';
+        }
+        alert(sc_final + "   Classe= " + classe);
+    }
+}
 function notation(str) {
-    $("#note_" + str).val(parseInt($("#ponderation_" + str).val()) * parseInt($("#notation_" + str).val()));
+    if ($('#prise_cmpt_' + str).val() === 'Oui') {
+        $("#note_" + str).val(parseInt($("#ponderation_" + str).val()) * parseInt($("#notation_" + str).val()));
+    } else {
+        $("#note_" + str).val(0);
+    }
 }
 function amont(str) {
+
     if ($("#importance_" + str).val() === "Extrême importance") {
         $("#ponderation_" + str).val(4);
-        $("#note_" + str).val(4 * parseInt($("#notation_" + str).val()));
+        if ($('#prise_cmpt_' + str).val() === 'Oui') {
+            $("#note_" + str).val(4 * parseInt($("#notation_" + str).val()));
+        }
     } else if ($("#importance_" + str).val() === "Grande importance") {
         $("#ponderation_" + str).val(3);
-        $("#note_" + str).val(3 * parseInt($("#notation_" + str).val()));
+        if ($('#prise_cmpt_' + str).val() === 'Oui') {
+            $("#note_" + str).val(3 * parseInt($("#notation_" + str).val()));
+        }
     } else if ($("#importance_" + str).val() === "Moyenne importance") {
         $("#ponderation_" + str).val(2);
-        $("#note_" + str).val(2 * parseInt($("#notation_" + str).val()));
+        if ($('#prise_cmpt_' + str).val() === 'Oui') {
+            $("#note_" + str).val(2 * parseInt($("#notation_" + str).val()));
+        }
     } else if ($("#importance_" + str).val() === "Faible importance") {
         $("#ponderation_" + str).val(1);
-        $("#note_" + str).val(1 * parseInt($("#notation_" + str).val()));
+        if ($('#prise_cmpt_' + str).val() === 'Oui') {
+            $("#note_" + str).val(1 * parseInt($("#notation_" + str).val()));
+        }
     }
+
 }
 function gener_pwd() {
     var ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN';
@@ -38,8 +113,6 @@ $(document).ready(function () {
     $("#bc").attr('disabled', 'disabled');
     $("#ri").attr('disabled', 'disabled');
     $("#autrepj").attr('disabled', 'disabled');
-
-
     $('#autreObjc').on('change', function (event) {
         if ($("#autreObjc").is(':checked')) {
             $("#autreObj").removeAttr('disabled');
@@ -137,5 +210,4 @@ $(document).ready(function () {
             }
         }
     });
-
 });
