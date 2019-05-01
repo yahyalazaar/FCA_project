@@ -16,7 +16,6 @@ if (!empty($frn) && !empty($nc) && !empty($contact)) {
     $rec->ncmdRec = $nc;
     $rec->etatRec = "En cours";
     $last = $add->insert($rec);
-
     $add = new ObjetsMySqlDAO();
     $obj = new Objet();
     $obj->idRec = $last;

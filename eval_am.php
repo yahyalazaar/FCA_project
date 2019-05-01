@@ -77,7 +77,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        <form method="post" action="">
+                                        <form method="get" action="">
                                             <table border="1" class="table">
                                                 <thead>
                                                     <tr>
@@ -173,7 +173,7 @@
                                                                 } else if ($i >= 15 && $i < 16) {
                                                                     echo "Enviromennemt ";
                                                                 } else if ($i >= 16 && $i < 17) {
-                                                                    echo "Hyginène";
+                                                                    echo "Hygiène";
                                                                 } else if ($i >= 17 && $i < 18) {
                                                                     echo "Sécurité";
                                                                 } else if ($i >= 18 && $i < 20) {
@@ -219,12 +219,36 @@
                                             </table>
 
                                             <div class="ln_solid"></div>
-                                            <div class="form-group">
-                                                <div class="col-md-12 col-md-offset-3">
-                                                    <button type="reset" class="btn btn-primary">Cancel</button>
-                                                    <button onclick="total()" type="button" class="btn btn-success">Calculer</button>
+                                            <div class="form-horizontal form-label-left" id="resultat">
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                           for="score_finale">Note finale<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input class="form-control col-md-7 col-xs-12"
+                                                               data-validate-length-range="3" data-validate-words="1"
+                                                               name="score_finale" disabled="" id="score_finale" type="text" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                           for="classe">Classe<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input class="form-control col-md-7 col-xs-12"
+                                                               data-validate-length-range="3" data-validate-words="1"
+                                                               name="classe" id="classe" disabled="" type="text" required="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-12 col-md-offset-3">
+                                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                                        <button id="calc_am" type="button" class="btn btn-success">Calculer</button>
+                                                        <button type="submit" class="btn btn-success" id="save" disabled="">Enregistrer</button>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </form>
                                     </div>
                                 </div>
