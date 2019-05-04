@@ -34,8 +34,21 @@
                 include 'template.php';
                 $rec = new ReclamationMySqlDAO();
                 $rec = $rec->load($_GET['idRec']);
-                $acht = new AcheteurMySqlDAO();
-                $acht = $acht->load($rec->idAcht);
+                if ($rec->idAcht == NULL) {
+                    $admin = new AdminMySqlDAO();
+                    $admin = $admin->load($rec->idAdmin);
+                    $fct='Admin';
+                    $nom = $admin->nomAdmin." ".$admin->prenomAdmin;
+                    $tel = $admin->telAdmin;
+                    $email = $admin->emailAdmin;
+                } else {
+                    $acht = new AcheteurMySqlDAO();
+                    $acht = $acht->load($rec->idAcht);
+                    $fct='Acheteur';
+                    $nom = $acht->nomAcht." ".$acht->prenomAcht;
+                    $tel = $acht->telAcht;
+                    $email = $acht->emailAcht;
+                }
                 $frn = new FournisseurMySqlDAO();
                 $frn = $frn->load($rec->idFrn);
                 $obj = new ObjetsMySqlDAO();
@@ -121,16 +134,16 @@
                                                             <table width="362" style="margin: 1%">
                                                                 <tr>
                                                                     <td> <strong>Réalisé par :</strong></td>
-                                                                    <td><strong><?php echo $acht->nomAcht . " " . $acht->prenomAcht; ?>  </strong></td>
+                                                                    <td><strong><?php echo $nom; ?>  </strong></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Numéro de tél :</td><td><?php echo $acht->telAcht; ?></td>
+                                                                    <td>Numéro de tél :</td><td><?php echo $tel; ?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td> Email :</td><td><?php echo $acht->emailAcht; ?></td>
+                                                                    <td> Email :</td><td><?php echo $email; ?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Fonction :</td><td> Acheteur</td>
+                                                                    <td>Fonction :</td><td> <?php echo $fct; ?></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
@@ -435,7 +448,7 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        Salma  <a href="#"></a>
+                        FCA  <a href="#"></a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>

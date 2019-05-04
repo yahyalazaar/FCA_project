@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-28 13:14
+ * @date: 2019-05-04 16:44
  */
 interface RfiDAO{
 
@@ -53,8 +53,24 @@ interface RfiDAO{
 
 	public function queryByIdFrn($value);
 
+	public function queryByRfiRemp($value);
+
+	public function queryByOrganRfi($value);
+
+	public function queryByPfRfi($value);
+
+	public function queryByBilanRfi($value);
+
 
 	public function deleteByIdFrn($value);
+
+	public function deleteByRfiRemp($value);
+
+	public function deleteByOrganRfi($value);
+
+	public function deleteByPfRfi($value);
+
+	public function deleteByBilanRfi($value);
 
 
 }

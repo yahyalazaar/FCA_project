@@ -57,6 +57,20 @@ class DAOFactory{
 	}
 
 	/**
+	 * @return AttreamDAO
+	 */
+	public static function getAttreamDAO(){
+		return new AttreamMySqlExtDAO();
+	}
+
+	/**
+	 * @return AttreavDAO
+	 */
+	public static function getAttreavDAO(){
+		return new AttreavMySqlExtDAO();
+	}
+
+	/**
 	 * @return DispositionDAO
 	 */
 	public static function getDispositionDAO(){
@@ -96,13 +110,6 @@ class DAOFactory{
 	 */
 	public static function getFrnSegDAO(){
 		return new FrnSegMySqlExtDAO();
-	}
-
-	/**
-	 * @return HistoriquerfiDAO
-	 */
-	public static function getHistoriquerfiDAO(){
-		return new HistoriquerfiMySqlExtDAO();
 	}
 
 	/**

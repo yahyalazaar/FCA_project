@@ -3,11 +3,12 @@
 	 * Object represents table 'reclamation'
 	 *
      	 * @author: http://phpdao.com
-     	 * @date: 2019-04-28 13:14	 
+     	 * @date: 2019-05-04 16:44	 
 	 */
 	class Reclamation{
 		
 		var $idRec;
+		var $idAdmin;
 		var $idAcht;
 		var $idFrn;
 		var $ncmdRec;

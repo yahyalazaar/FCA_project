@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-28 13:14
+ * @date: 2019-05-04 16:44
  */
 interface ReclamationDAO{
 
@@ -51,6 +51,8 @@ interface ReclamationDAO{
 	 */
 	public function clean();
 
+	public function queryByIdAdmin($value);
+
 	public function queryByIdAcht($value);
 
 	public function queryByIdFrn($value);
@@ -67,6 +69,8 @@ interface ReclamationDAO{
 
 	public function queryByEtatRec($value);
 
+
+	public function deleteByIdAdmin($value);
 
 	public function deleteByIdAcht($value);
 

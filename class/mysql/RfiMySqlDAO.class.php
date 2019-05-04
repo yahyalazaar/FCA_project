@@ -3,7 +3,7 @@
  * Class that operate on table 'rfi'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-28 13:14
+ * @date: 2019-05-04 16:44
  */
 class RfiMySqlDAO implements RfiDAO{
 
@@ -57,10 +57,14 @@ class RfiMySqlDAO implements RfiDAO{
  	 * @param RfiMySql rfi
  	 */
 	public function insert($rfi){
-		$sql = 'INSERT INTO rfi (id_frn) VALUES (?)';
+		$sql = 'INSERT INTO rfi (id_frn, rfiRemp, organRfi, pfRfi, bilanRfi) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($rfi->idFrn);
+		$sqlQuery->set($rfi->rfiRemp);
+		$sqlQuery->set($rfi->organRfi);
+		$sqlQuery->set($rfi->pfRfi);
+		$sqlQuery->set($rfi->bilanRfi);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$rfi->idRfi = $id;
@@ -73,10 +77,14 @@ class RfiMySqlDAO implements RfiDAO{
  	 * @param RfiMySql rfi
  	 */
 	public function update($rfi){
-		$sql = 'UPDATE rfi SET id_frn = ? WHERE id_rfi = ?';
+		$sql = 'UPDATE rfi SET id_frn = ?, rfiRemp = ?, organRfi = ?, pfRfi = ?, bilanRfi = ? WHERE id_rfi = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($rfi->idFrn);
+		$sqlQuery->set($rfi->rfiRemp);
+		$sqlQuery->set($rfi->organRfi);
+		$sqlQuery->set($rfi->pfRfi);
+		$sqlQuery->set($rfi->bilanRfi);
 
 		$sqlQuery->setNumber($rfi->idRfi);
 		return $this->executeUpdate($sqlQuery);
@@ -98,11 +106,67 @@ class RfiMySqlDAO implements RfiDAO{
 		return $this->getList($sqlQuery);
 	}
 
+	public function queryByRfiRemp($value){
+		$sql = 'SELECT * FROM rfi WHERE rfiRemp = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByOrganRfi($value){
+		$sql = 'SELECT * FROM rfi WHERE organRfi = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByPfRfi($value){
+		$sql = 'SELECT * FROM rfi WHERE pfRfi = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByBilanRfi($value){
+		$sql = 'SELECT * FROM rfi WHERE bilanRfi = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
 
 	public function deleteByIdFrn($value){
 		$sql = 'DELETE FROM rfi WHERE id_frn = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByRfiRemp($value){
+		$sql = 'DELETE FROM rfi WHERE rfiRemp = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByOrganRfi($value){
+		$sql = 'DELETE FROM rfi WHERE organRfi = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByPfRfi($value){
+		$sql = 'DELETE FROM rfi WHERE pfRfi = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByBilanRfi($value){
+		$sql = 'DELETE FROM rfi WHERE bilanRfi = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
@@ -118,6 +182,10 @@ class RfiMySqlDAO implements RfiDAO{
 		
 		$rfi->idRfi = $row['id_rfi'];
 		$rfi->idFrn = $row['id_frn'];
+		$rfi->rfiRemp = $row['rfiRemp'];
+		$rfi->organRfi = $row['organRfi'];
+		$rfi->pfRfi = $row['pfRfi'];
+		$rfi->bilanRfi = $row['bilanRfi'];
 
 		return $rfi;
 	}

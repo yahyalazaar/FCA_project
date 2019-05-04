@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2019-04-28 13:14
+ * @date: 2019-05-04 16:44
  */
 interface EvalamontDAO{
 
@@ -51,6 +51,34 @@ interface EvalamontDAO{
 	 */
 	public function clean();
 
+	public function queryByIdAdmin($value);
+
+	public function queryByIdAcht($value);
+
+	public function queryByIdFrn($value);
+
+	public function queryByEtatEam($value);
+
+	public function queryByDateEam($value);
+
+	public function queryByScoreEam($value);
+
+	public function queryByClasseEam($value);
+
+
+	public function deleteByIdAdmin($value);
+
+	public function deleteByIdAcht($value);
+
+	public function deleteByIdFrn($value);
+
+	public function deleteByEtatEam($value);
+
+	public function deleteByDateEam($value);
+
+	public function deleteByScoreEam($value);
+
+	public function deleteByClasseEam($value);
 
 
 }

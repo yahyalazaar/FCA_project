@@ -51,12 +51,19 @@
     <body class="nav-md">
         <div class="container body">
             <div class="main_container">
-                <?php include 'template.php'; ?>
+
+                <?php
+                if (empty($_GET['frn'])) {
+                    header('location: frn_am.php');
+                }
+
+                include 'template.php';
+                ?>
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <div class="">
                         <div class="clearfix"></div>
-                        <div id="notif_"></div>
+                        
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
@@ -77,7 +84,8 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        <form method="get" action="">
+                                        <form method="post" action="Controlleurs/add_eam.php">
+                                            <input type="hidden" name="idfrn" value="<?php echo $_GET['frn']; ?>"/>
                                             <table border="1" class="table">
                                                 <thead>
                                                     <tr>
@@ -107,19 +115,22 @@
                                                             <td>
                                                                 <?php
                                                                 if ($i < 12) {
-                                                                    echo "Notoriété";
+                                                                    $val = "Notoriété";
                                                                 } else if ($i >= 12 && $i < 14) {
-                                                                    echo "Qualité";
+                                                                    $val = "Qualité";
                                                                 } else if ($i >= 14 && $i < 15) {
-                                                                    echo "Logistique";
+                                                                    $val = "Logistique";
                                                                 } else if ($i >= 15 && $i < 20) {
-                                                                    echo "HSE-SST";
+                                                                    $val = "HSE-SST";
                                                                 } else if ($i >= 20 && $i < 26) {
-                                                                    echo "Economique";
+                                                                    $val = "Economique";
                                                                 } else if ($i >= 26) {
-                                                                    echo "Commercial";
+                                                                    $val = "Commercial";
                                                                 }
+                                                                echo $val;
                                                                 ?>
+                                                                <input type="hidden" name="domaine_<?php echo $i; ?>" value="<?php echo $val; ?>"/>
+
                                                             </td>
                                                             <td>
                                                                 <?php
@@ -159,31 +170,34 @@
                                                             <td>
                                                                 <?php
                                                                 if ($i < 9) {
-                                                                    echo "Donnée d'entreprise";
+                                                                    $val = "Donnée d'entreprise";
                                                                 } else if ($i >= 9 && $i < 10) {
-                                                                    echo "RH";
+                                                                    $val = "RH";
                                                                 } else if ($i >= 10 && $i < 11) {
-                                                                    echo "R&D";
+                                                                    $val = "R&D";
                                                                 } else if ($i >= 11 && $i < 12) {
-                                                                    echo "Organisation";
+                                                                    $val = "Organisation";
                                                                 } else if ($i >= 12 && $i < 14) {
-                                                                    echo "Niveau a priori";
+                                                                    $val = "Niveau a priori";
                                                                 } else if ($i >= 14 && $i < 15) {
-                                                                    echo "Production";
+                                                                    $val = "Production";
                                                                 } else if ($i >= 15 && $i < 16) {
-                                                                    echo "Enviromennemt ";
+                                                                    $val = "Enviromennemt ";
                                                                 } else if ($i >= 16 && $i < 17) {
-                                                                    echo "Hygiène";
+                                                                    $val = "Hygiène";
                                                                 } else if ($i >= 17 && $i < 18) {
-                                                                    echo "Sécurité";
+                                                                    $val = "Sécurité";
                                                                 } else if ($i >= 18 && $i < 20) {
-                                                                    echo "Juridique ";
+                                                                    $val = "Juridique ";
                                                                 } else if ($i >= 20 && $i < 26) {
-                                                                    echo "Santé financière";
+                                                                    $val = "Santé financière";
                                                                 } else if ($i >= 26) {
-                                                                    echo "Relationnel";
+                                                                    $val = "Relationnel";
                                                                 }
+                                                                echo $val;
                                                                 ?>
+                                                                <input type="hidden" name="critere_<?php echo $i; ?>" value="<?php echo $val; ?>"/>
+
                                                             </td>
                                                             <td><?php echo $v; ?>
                                                                 <input type="hidden" name="indecateur_<?php echo $i; ?>" value="<?php echo $v; ?>" />
@@ -203,11 +217,11 @@
                                                                 </select>
                                                             </td>
                                                             <td >
-                                                                <input style="width: 100%" type="number" name="ponderation_<?php echo $i; ?>" value="4" id="ponderation_<?php echo $i; ?>" disabled=""/>
+                                                                <input style="width: 100%" type="number" name="ponderation_<?php echo $i; ?>" value="4" id="ponderation_<?php echo $i; ?>" readonly=""/>
                                                             </td>
                                                             <td><input type="number" name="notation_<?php echo $i; ?>" id="notation_<?php echo $i; ?>" min="0" max="5" value="0" onkeyup="notation(<?php echo $i; ?>)" onchange="notation(<?php echo $i; ?>)"/></td>
                                                             <td >
-                                                                <input style="width: 100%" type="text" name="note_<?php echo $i; ?>" value="0" id="note_<?php echo $i; ?>" disabled=""/>
+                                                                <input style="width: 100%" type="text" name="note_<?php echo $i; ?>" value="0" id="note_<?php echo $i; ?>" readonly=""/>
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -226,8 +240,7 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <input class="form-control col-md-7 col-xs-12"
-                                                               data-validate-length-range="3" data-validate-words="1"
-                                                               name="score_finale" disabled="" id="score_finale" type="text" required="">
+                                                               name="score_finale" readonly="" id="score_finale" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="item form-group">
@@ -236,8 +249,7 @@
                                                     </label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                                         <input class="form-control col-md-7 col-xs-12"
-                                                               data-validate-length-range="3" data-validate-words="1"
-                                                               name="classe" id="classe" disabled="" type="text" required="">
+                                                               name="classe" id="classe" readonly="" type="text" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -261,7 +273,7 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        Salma <a href="#"></a>
+                        FCA <a href="#"></a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>

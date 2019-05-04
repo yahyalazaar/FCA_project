@@ -37,6 +37,14 @@
 	require_once('class/dto/AdminFa.class.php');
 	require_once('class/mysql/AdminFaMySqlDAO.class.php');
 	require_once('class/mysql/ext/AdminFaMySqlExtDAO.class.php');
+	require_once('class/dao/AttreamDAO.class.php');
+	require_once('class/dto/Attream.class.php');
+	require_once('class/mysql/AttreamMySqlDAO.class.php');
+	require_once('class/mysql/ext/AttreamMySqlExtDAO.class.php');
+	require_once('class/dao/AttreavDAO.class.php');
+	require_once('class/dto/Attreav.class.php');
+	require_once('class/mysql/AttreavMySqlDAO.class.php');
+	require_once('class/mysql/ext/AttreavMySqlExtDAO.class.php');
 	require_once('class/dao/DispositionDAO.class.php');
 	require_once('class/dto/Disposition.class.php');
 	require_once('class/mysql/DispositionMySqlDAO.class.php');
@@ -61,10 +69,6 @@
 	require_once('class/dto/FrnSeg.class.php');
 	require_once('class/mysql/FrnSegMySqlDAO.class.php');
 	require_once('class/mysql/ext/FrnSegMySqlExtDAO.class.php');
-	require_once('class/dao/HistoriquerfiDAO.class.php');
-	require_once('class/dto/Historiquerfi.class.php');
-	require_once('class/mysql/HistoriquerfiMySqlDAO.class.php');
-	require_once('class/mysql/ext/HistoriquerfiMySqlExtDAO.class.php');
 	require_once('class/dao/ObjetsDAO.class.php');
 	require_once('class/dto/Objet.class.php');
 	require_once('class/mysql/ObjetsMySqlDAO.class.php');

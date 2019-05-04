@@ -8,7 +8,12 @@ if (!empty($frn) && !empty($nc) && !empty($contact)) {
     $add = new ReclamationMySqlDAO();
     $rec = new Reclamation();
     $rec->dateRec = date("Y-m-d H:m:s");
-    $rec->idAcht = $_SESSION['idlogin'];
+    if ($_SESSION['cpt'] == 'admin') {
+        $rec->idAdmin = $_SESSION['idlogin'];
+    } elseif ($_SESSION['cpt'] == 'acht') {
+        $rec->idAcht = $_SESSION['idlogin'];
+    }
+
     $rec->idFrn = $frn;
     $rec->contactRec = $contact;
     $rec->descriptionRec = $description;
@@ -41,7 +46,7 @@ if (!empty($frn) && !empty($nc) && !empty($contact)) {
     $add = new PiecejointesMySqlDAO();
     $pj = new Piecejointe();
     $MAX_FILE_SIZE = 3000000;
-    $folder = 'uploaded/';
+    $folder = 'uploaded/rec/';
     if (!empty($blc) && $_FILES['bl']['size'] > 0) {
         $fname = $_FILES['bl']['name'];
         $ftype = $_FILES['bl']['type'];

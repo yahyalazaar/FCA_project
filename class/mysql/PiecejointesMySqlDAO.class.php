@@ -3,7 +3,7 @@
  * Class that operate on table 'piecejointes'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-28 13:14
+ * @date: 2019-05-04 16:44
  */
 class PiecejointesMySqlDAO implements PiecejointesDAO{
 
@@ -61,12 +61,12 @@ class PiecejointesMySqlDAO implements PiecejointesDAO{
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($piecejointe->idRec);
-		$sqlQuery->setNumber($piecejointe->photoPj);
-		$sqlQuery->setNumber($piecejointe->emailPj);
-		$sqlQuery->setNumber($piecejointe->bcPj);
-		$sqlQuery->setNumber($piecejointe->blPj);
-		$sqlQuery->setNumber($piecejointe->riPj);
-		$sqlQuery->setNumber($piecejointe->autrePj);
+		$sqlQuery->set($piecejointe->photoPj);
+		$sqlQuery->set($piecejointe->emailPj);
+		$sqlQuery->set($piecejointe->bcPj);
+		$sqlQuery->set($piecejointe->blPj);
+		$sqlQuery->set($piecejointe->riPj);
+		$sqlQuery->set($piecejointe->autrePj);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$piecejointe->idPj = $id;
@@ -83,12 +83,12 @@ class PiecejointesMySqlDAO implements PiecejointesDAO{
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($piecejointe->idRec);
-		$sqlQuery->setNumber($piecejointe->photoPj);
-		$sqlQuery->setNumber($piecejointe->emailPj);
-		$sqlQuery->setNumber($piecejointe->bcPj);
-		$sqlQuery->setNumber($piecejointe->blPj);
-		$sqlQuery->setNumber($piecejointe->riPj);
-		$sqlQuery->setNumber($piecejointe->autrePj);
+		$sqlQuery->set($piecejointe->photoPj);
+		$sqlQuery->set($piecejointe->emailPj);
+		$sqlQuery->set($piecejointe->bcPj);
+		$sqlQuery->set($piecejointe->blPj);
+		$sqlQuery->set($piecejointe->riPj);
+		$sqlQuery->set($piecejointe->autrePj);
 
 		$sqlQuery->setNumber($piecejointe->idPj);
 		return $this->executeUpdate($sqlQuery);
@@ -113,42 +113,42 @@ class PiecejointesMySqlDAO implements PiecejointesDAO{
 	public function queryByPhotoPj($value){
 		$sql = 'SELECT * FROM piecejointes WHERE photoPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByEmailPj($value){
 		$sql = 'SELECT * FROM piecejointes WHERE emailPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByBcPj($value){
 		$sql = 'SELECT * FROM piecejointes WHERE bcPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByBlPj($value){
 		$sql = 'SELECT * FROM piecejointes WHERE blPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByRiPj($value){
 		$sql = 'SELECT * FROM piecejointes WHERE riPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByAutrePj($value){
 		$sql = 'SELECT * FROM piecejointes WHERE autrePj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
@@ -163,42 +163,42 @@ class PiecejointesMySqlDAO implements PiecejointesDAO{
 	public function deleteByPhotoPj($value){
 		$sql = 'DELETE FROM piecejointes WHERE photoPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function deleteByEmailPj($value){
 		$sql = 'DELETE FROM piecejointes WHERE emailPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function deleteByBcPj($value){
 		$sql = 'DELETE FROM piecejointes WHERE bcPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function deleteByBlPj($value){
 		$sql = 'DELETE FROM piecejointes WHERE blPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function deleteByRiPj($value){
 		$sql = 'DELETE FROM piecejointes WHERE riPj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function deleteByAutrePj($value){
 		$sql = 'DELETE FROM piecejointes WHERE autrePj = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 

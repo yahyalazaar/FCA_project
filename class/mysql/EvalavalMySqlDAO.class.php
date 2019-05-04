@@ -3,7 +3,7 @@
  * Class that operate on table 'evalaval'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-28 13:14
+ * @date: 2019-05-04 16:44
  */
 class EvalavalMySqlDAO implements EvalavalDAO{
 
@@ -57,9 +57,16 @@ class EvalavalMySqlDAO implements EvalavalDAO{
  	 * @param EvalavalMySql evalaval
  	 */
 	public function insert($evalaval){
-		$sql = 'INSERT INTO evalaval () VALUES ()';
+		$sql = 'INSERT INTO evalaval (id_admin, id_acht, id_frn, etatEav, dateEav, scoreEav, classeEav) VALUES (?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($evalaval->idAdmin);
+		$sqlQuery->setNumber($evalaval->idAcht);
+		$sqlQuery->setNumber($evalaval->idFrn);
+		$sqlQuery->setNumber($evalaval->etatEav);
+		$sqlQuery->set($evalaval->dateEav);
+		$sqlQuery->set($evalaval->scoreEav);
+		$sqlQuery->set($evalaval->classeEav);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$evalaval->idEav = $id;
@@ -72,9 +79,16 @@ class EvalavalMySqlDAO implements EvalavalDAO{
  	 * @param EvalavalMySql evalaval
  	 */
 	public function update($evalaval){
-		$sql = 'UPDATE evalaval SET  WHERE id_eav = ?';
+		$sql = 'UPDATE evalaval SET id_admin = ?, id_acht = ?, id_frn = ?, etatEav = ?, dateEav = ?, scoreEav = ?, classeEav = ? WHERE id_eav = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($evalaval->idAdmin);
+		$sqlQuery->setNumber($evalaval->idAcht);
+		$sqlQuery->setNumber($evalaval->idFrn);
+		$sqlQuery->setNumber($evalaval->etatEav);
+		$sqlQuery->set($evalaval->dateEav);
+		$sqlQuery->set($evalaval->scoreEav);
+		$sqlQuery->set($evalaval->classeEav);
 
 		$sqlQuery->setNumber($evalaval->idEav);
 		return $this->executeUpdate($sqlQuery);
@@ -89,6 +103,104 @@ class EvalavalMySqlDAO implements EvalavalDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function queryByIdAdmin($value){
+		$sql = 'SELECT * FROM evalaval WHERE id_admin = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByIdAcht($value){
+		$sql = 'SELECT * FROM evalaval WHERE id_acht = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByIdFrn($value){
+		$sql = 'SELECT * FROM evalaval WHERE id_frn = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByEtatEav($value){
+		$sql = 'SELECT * FROM evalaval WHERE etatEav = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByDateEav($value){
+		$sql = 'SELECT * FROM evalaval WHERE dateEav = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByScoreEav($value){
+		$sql = 'SELECT * FROM evalaval WHERE scoreEav = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByClasseEav($value){
+		$sql = 'SELECT * FROM evalaval WHERE classeEav = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+
+	public function deleteByIdAdmin($value){
+		$sql = 'DELETE FROM evalaval WHERE id_admin = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByIdAcht($value){
+		$sql = 'DELETE FROM evalaval WHERE id_acht = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByIdFrn($value){
+		$sql = 'DELETE FROM evalaval WHERE id_frn = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByEtatEav($value){
+		$sql = 'DELETE FROM evalaval WHERE etatEav = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByDateEav($value){
+		$sql = 'DELETE FROM evalaval WHERE dateEav = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByScoreEav($value){
+		$sql = 'DELETE FROM evalaval WHERE scoreEav = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByClasseEav($value){
+		$sql = 'DELETE FROM evalaval WHERE classeEav = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
 
 
 	
@@ -101,6 +213,13 @@ class EvalavalMySqlDAO implements EvalavalDAO{
 		$evalaval = new Evalaval();
 		
 		$evalaval->idEav = $row['id_eav'];
+		$evalaval->idAdmin = $row['id_admin'];
+		$evalaval->idAcht = $row['id_acht'];
+		$evalaval->idFrn = $row['id_frn'];
+		$evalaval->etatEav = $row['etatEav'];
+		$evalaval->dateEav = $row['dateEav'];
+		$evalaval->scoreEav = $row['scoreEav'];
+		$evalaval->classeEav = $row['classeEav'];
 
 		return $evalaval;
 	}

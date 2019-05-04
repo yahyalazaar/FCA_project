@@ -3,7 +3,7 @@
  * Class that operate on table 'admin_admin'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2019-04-28 13:14
+ * @date: 2019-05-04 16:44
  */
 class AdminAdminMySqlDAO implements AdminAdminDAO{
 

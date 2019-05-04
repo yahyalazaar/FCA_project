@@ -9,6 +9,4 @@
 
 //print_r($_FILES);
 
-if(!empty($_POST['retard']))
-    echo "ok";
-else echo "not";
+echo $_POST['score_finale'];

@@ -31,9 +31,25 @@
         <div class="container body">
             <div class="main_container">
                 <?php
+                if (empty($_GET['frn'])) {
+                    header('location: all_rec.php');
+                }
                 include 'template.php';
-                $user = new AcheteurMySqlDAO();
-                $user = $user->load($_SESSION['idlogin']);
+                if ($_SESSION['cpt'] == 'admin') {
+                    $admin = new AdminMySqlDAO();
+                    $admin = $admin->load($_SESSION['idlogin']);
+                    $fct = 'Admin';
+                    $nom = $admin->nomAdmin . " " . $admin->prenomAdmin;
+                    $tel = $admin->telAdmin;
+                    $email = $admin->emailAdmin;
+                } elseif ($_SESSION['cpt'] == 'acht') {
+                    $acht = new AcheteurMySqlDAO();
+                    $acht = $acht->load($_SESSION['idlogin']);
+                    $fct = 'Acheteur';
+                    $nom = $acht->nomAcht . " " . $acht->prenomAcht;
+                    $tel = $acht->telAcht;
+                    $email = $acht->emailAcht;
+                }
                 ?>
                 <!-- page content -->
                 <div class="right_col" role="main">
@@ -113,31 +129,28 @@
                                                             <table width="362" style="margin: 1%">
                                                                 <tr>
                                                                     <td> <strong>Réalisé par :</strong></td>
-                                                                    <td><strong><?php echo $user->nomAcht . " " . $user->prenomAcht; ?>  </strong></td>
+                                                                    <td><strong><?php echo $nom; ?>  </strong></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Numéro de tél :</td><td><?php echo $user->telAcht; ?></td>
+                                                                    <td>Numéro de tél :</td><td><?php echo $tel; ?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td> Email :</td><td><?php echo $user->emailAcht; ?></td>
+                                                                    <td> Email :</td><td><?php echo $email; ?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Fonction :</td><td> Acheteur</td>
+                                                                    <td>Fonction :</td><td> <?php echo $fct; ?></td>
                                                                 </tr>
                                                             </table>
                                                         </td>
                                                         <td width="357" valign="top">
                                                             <table width="357" style="margin: 1%">
                                                                 <tr>
-                                                                    <td><strong>Fournisseur :</td><td> <select name="frn" required="">
-                                                                            <?php
-                                                                            $frn = new FournisseurMySqlDAO();
-                                                                            $all_frn = $frn->queryAll();
-                                                                            foreach ($all_frn as $value) {
-                                                                                ?>
-                                                                                <option value="<?php echo $value->idFrn; ?>"><?php echo $value->nomFrn . " " . $value->prenomFrn; ?></option>
-                                                                            <?php } ?>
-                                                                        </select>
+                                                                    <td><strong>Fournisseur :</td><td> 
+                                                                        <?php
+                                                                        $frn = new FournisseurMySqlDAO();
+                                                                        $frn = $frn->load($_GET['frn']);
+                                                                        echo $frn->nomFrn." ".$frn->prenomFrn;
+                                                                        ?>
 
                                                                         </strong></td>
                                                                 </tr>
@@ -259,7 +272,7 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        Salma  <a href="#"></a>
+                        FCA  <a href="#"></a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>

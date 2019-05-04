@@ -26,7 +26,7 @@ if ($_SESSION['cpt'] == 'admin') {
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Salma Project!</span></a>
+            <a href="index.php" class="site_title"><img src="Controlleurs/uploaded/logo.png" alt="login" width="100%" height="90%"/></a>
         </div>
         <div class="clearfix"></div>
         <!-- menu profile quick info -->
@@ -55,16 +55,20 @@ if ($_SESSION['cpt'] == 'admin') {
                         <li><a href="webMaster.php"><i class="fa fa-user"></i>Web Master</a></li>
                         <li><a href="segements.php"><i class="fa fa-archive"></i>Segments</a></li>
                         <li><a href="familleAchats.php"><i class="fa fa-group"></i>Familles d'achats</a></li>
+                        <li><a href="all_rec.php"><i class="fa fa-warning"></i>Réclamations</a></li>
+                        <li><a href="frn_am.php"><i class="fa fa-file-text"></i>Évaluation en amont</a></li>
+                        <li><a href="frn_av.php"><i class="fa fa-file-text"></i>Évaluation en aval</a></li>
                     <?php } else if ($_SESSION['cpt'] == 'acht') { ?>
                         <li><a href="fournisseurs.php"><i class="fa fa-user"></i>Fournisseurs</a></li>
                     <?php } if ($_SESSION['cpt'] == 'frn') { ?>
                         <li><a href="allReclamation.php"><i class="fa fa-warning"></i>Réclamations</a></li>
-                        <li><a href="#"><i class="fa fa-file-text-o"></i>RFI</a></li>
+                        <li><a href="rfi.php"><i class="fa fa-file-text-o"></i>RFI</a></li>
                     <?php } else if ($_SESSION['cpt'] == 'acht') { ?>
-                        <li><a href="reclamation.php"><i class="fa fa-warning"></i>Réclamations</a></li>
+                        <li><a href="all_rec.php"><i class="fa fa-warning"></i>Réclamations</a></li>
+                        <li><a href="frn_am.php"><i class="fa fa-file-text"></i>Évaluation en amont</a></li>
+                        <li><a href="frn_av.php"><i class="fa fa-file-text"></i>Évaluation en aval</a></li>
                     <?php } ?>
-                    <li><a href="eval_am.php"><i class="fa fa-file-text"></i>Évaluation en amont</a></li>
-                    <li><a href="eval_av.php"><i class="fa fa-file-text"></i>Évaluation en aval</a></li>
+
                 </ul>
             </div>
         </div>

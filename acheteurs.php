@@ -214,7 +214,7 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        Salma <a href="#"></a>
+                        FCA <a href="#"></a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>

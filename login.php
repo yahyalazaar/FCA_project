@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Gentelella Alela! |</title>
+        <title>Login |</title>
 
         <!-- Bootstrap -->
         <link href="asset/vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -33,19 +33,20 @@
                 <div class="animate form login_form">
                     <section class="login_content">
                         <div id="notif_"> </div>
+                        <img src="Controlleurs/uploaded/logo.png" alt="login" width="50%" height="30%"/>
                         <form id="login_form" method="post">
-                            <h1>Login Form</h1>
+
+                            <h1> Authentification </h1>
                             <div>
-                                <input type="text" class="form-control" placeholder="Username"
+                                <input type="text" class="form-control" placeholder="Email"
                                        required="" name="login" />
                             </div>
                             <div>
                                 <input type="password" class="form-control"
-                                       placeholder="Password" required="" name="pwd" />
+                                       placeholder="Mot de passe" required="" name="pwd" />
                             </div>
                             <div>
-                                <button class="btn btn-default submit" id="login_btn" type="button">Log in</button> <a
-                                    class="reset_pass" href="#">Lost your password?</a>
+                                <button class="btn btn-default submit" id="login_btn" type="button">Se connecter</button> 
                             </div>
 
                             <div class="clearfix"></div>
@@ -55,9 +56,6 @@
                                 <br />
 
                                 <div>
-                                    <h1>
-                                        <i class="fa fa-paw"></i> Salma
-                                    </h1>
                                     <p>©2019 All Rights Reserved. Privacy and Terms</p>
                                 </div>
                             </div>
